@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="registration.css">
+</head>
+
+<body class="reg-page">
+
+<div class="reg-container">
+
+    <div class="reg-header">
+        <h1 class="reg-title">
+            Create <span class="reg-title-accent">Account</span>
+        </h1>
+        <p class="reg-subtitle">Join Tech Mod Forum</p>
+    </div>
+
+    <div class="reg-card">
+        <div class="reg-top-bar"></div>
+        <div class="reg-card-body">
+
+            <form action="/registration" method="post">
+
+                <div class="reg-field-group">
+                    <label class="reg-label" for="email">Email</label>
+                    <input class="reg-input" type="text" name="email" id="email" required>
+                </div>
+
+                <div class="reg-field-group">
+                    <label class="reg-label" for="username">Username</label>
+                    <input class="reg-input" type="text" name="username" id="username" required>
+                </div>
+
+                <div class="reg-field-group">
+                    <label class="reg-label" for="password">Password</label>
+                    <input class="reg-input" type="password" name="password" id="password" required>
+                </div>
+
+                <div class="reg-field-group">
+                    <label class="reg-label" for="repeat-password">Repeat Password</label>
+                    <input class="reg-input" type="password" name="repeat-password" id="repeat-password" required>
+                </div>
+
+                <div class="reg-divider"></div>
+
+                <p class="reg-terms">
+                    By creating an account you agree to the terms and conditions.
+                </p>
+
+                <button type="submit" class="reg-button">Register</button>
+
+            </form>
+        </div>
+
+        <div class="reg-footer">
+            <p class="reg-footer-text">
+                Already have an account?
+                <a href="#" class="reg-footer-link">Sign In</a>
+            </p>
+        </div>
+
+    </div>
+
+    <p class="reg-bottom-note">Tech Mod Forum © 2026</p>
+
+</div>
+
+</body>
+</html>
