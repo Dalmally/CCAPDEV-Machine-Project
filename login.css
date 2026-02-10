@@ -1,97 +1,171 @@
+
+/* ========== RESET ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  font-family: 'Verdana', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #6442a3 0%, #674ba2 100%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: #ffffff;
+  color: #000000;
+  font-family: monospace;
   min-height: 100vh;
-}
-
-.login-container {
-  background: white;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  max-width: 400px;
-}
-
-.login-container h2 {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #333;
-  font-size: 28px;
-}
-
-.form-group {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* ========== CONTAINER ========== */
+.login-container {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* ========== HEADER ========== */
+.login-container > h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 32px;
+  letter-spacing: -0.5px;
+}
+
+/* ========== FORM ========== */
+.login-container form {
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.login-container form::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: linear-gradient(to right, transparent, #00ff9d, transparent);
+  opacity: 0.5;
+}
+
+.login-container form {
+  padding: 32px;
+}
+
+/* ========== FORM FIELDS ========== */
+.login-container label {
+  display: block;
+  font-size: 11px;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  font-weight: 700;
+  font-family: monospace;
+}
+
+.login-container label br {
+  display: none;
+}
+
+.login-container input[type="email"],
+.login-container input[type="password"] {
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #000000;
+  font-size: 14px;
+  font-family: monospace;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
   margin-bottom: 20px;
 }
 
-.form-group label {
-  display: block;
-  text-align: center;
-  margin-bottom: 8px;
-  color: #555;
-  font-weight: 500;
+.login-container input[type="email"]:focus,
+.login-container input[type="password"]:focus {
+  border-color: #00ff9d;
+  box-shadow: 0 0 0 2px rgba(0, 255, 157, 0.15);
 }
 
-.form-group input {
-  width: 100%;
-  padding: 12px;
-  border: 2px solid #ddd;
-  border-radius: 5px;
-  font-size: 16px;
-  transition: border-color 0.3s;
-}
-
-.form-group input:focus {
-  outline: none;
-  border-color: #667eea;
-}
-
-.form-group input::placeholder {
-  color: #999;
-}
-
-.login-btn {
-  width: 100%;
-  padding: 12px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: 600;
+/* ========== CHECKBOX ========== */
+.login-container input[type="checkbox"] {
+  margin-right: 6px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  accent-color: #00ff9d;
 }
 
-.login-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-}
-
-.login-btn:active {
-  transform: translateY(0);
-}
-
-.signup-link {
-  text-align: center;
-  margin-top: 20px;
-  color: #666;
+.login-container input[type="checkbox"] + label {
+  display: inline;
+  text-transform: none;
   font-size: 14px;
+  letter-spacing: normal;
+  font-weight: 400;
+  margin: 0;
 }
 
-.signup-link a {
-  color: #667eea;
+/* ========== SUBMIT BUTTON ========== */
+.login-container input[type="submit"] {
+  width: 100%;
+  background-color: #00ff9d;
+  color: #000000;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: monospace;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 12px;
+  margin-bottom: 16px;
+}
+
+.login-container input[type="submit"]:hover {
+  background-color: #00cc7d;
+  box-shadow: 0 0 20px rgba(0, 255, 157, 0.35);
+}
+
+.login-container input[type="submit"]:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.login-container input[type="submit"]:disabled:hover {
+  background-color: #00ff9d;
+  box-shadow: none;
+}
+
+/* ========== DIVIDER ========== */
+.login-container br {
+  display: none;
+}
+
+.login-container form::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background: #000000;
+  margin: 16px 0 16px;
+}
+
+/* ========== LINKS ========== */
+.login-container a {
+  display: block;
+  color: #00ff9d;
   text-decoration: none;
   font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  margin: 12px 0;
   transition: color 0.2s;
 }
 
-.signup-link a:hover {
-  color: #764ba2;
+.login-container a:hover {
+  text-decoration: underline;
+  color: #00cc7d;
 }
