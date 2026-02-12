@@ -3,33 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/editprofile.css">
     <title>Edit Profile</title>
 </head>
 <body>
-    <form action="home.html" id="profileform">
-        
-        <div id="header">
-            <h1>Edit Profile</h1>
-        </div>
-        
-        <div id="avatarsection">
-            <!--uhh idk yet-->
-        </div>
+    <div class="container">
+        <form action="home.html" id="profileform" method="GET">
+            
+            <div id="header">
+                <h2>Edit Profile</h2>
+            </div>
 
-        <div id="details">
-            <label for="username">Username</label>
-            <input type="text" id="username" placeholder="Enter new username">
-        </div>
+            <br>
+            
+            <div id="avatarsection">
+                <input type="file" id="avatarInput" accept="image/*" hidden>
+                
+                <div class="avatar" onclick="document.getElementById(avatarInput).click()">
+                    <img src="avatar.png" alt="Current Avatar" class="avatar">
+                    <div class="overlay">
+                        <span class="overlay-text">Change Avatar</span>
+                    </div>
+                </div>
+            </div>
 
-        <div id="details">
-            <label for="bio">Bio</label>
-            <input type="text" id="bio" placeholder="Enter new bio">
-        </div>
-        
-        <div id="actions">
-            <button type="button">Cancel</button>
-            <button type="button">Save Changes</button>
-        </div>
-    </form>
+            <br><br>
+
+            <div id="details">
+                <label for="username">Username</label>
+                <!--Placeholders will be replaced with the -->
+                <input type="text" id="username" placeholder="Enter new username">
+            </div>
+            <br><br>
+
+            <div id="details">
+                <label for="bio">Bio</label>
+                <input type="text" id="bio" placeholder="Enter new bio">
+            </div>
+
+            <br><br>
+            
+            <div id="actions">
+                <button type="button" class="button">Cancel</button>
+                <button type="submit" class="button">Save Changes</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
