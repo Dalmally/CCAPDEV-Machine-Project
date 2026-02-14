@@ -8,9 +8,9 @@
 </head>
 <body>
     <div class="post-container">
-        <h2>Post Title</h2>
+        <span class="post-title" id="postTitle"><h1>Post Title 1</h1></span>
         <div class="post-category">
-            <span class="category-label">Category: Technology</span>
+            <span class="category-label" id="category">Category: </span>
         </div>
         <br>
         <div class="post-content">
@@ -29,5 +29,23 @@
             <p>Comments go here...</p>
         </div>
     </div>
+
+   <script>
+    const categories = {
+        1: 'Electronic Schemas',
+        2: 'Hardware Repair & Teardown',
+        3: 'Firmware Mods',
+        4: 'Mobile Development',
+        5: 'Sideloading'
+    };
+
+    const url = new URL(window.location.href);
+    const categoryId = url.searchParams.get('category') || '1';
+    const postTitle = url.searchParams.get('title') || 'Post Title 1';
+    const category = categories[categoryId] || 'Electronic Schemas';
+    
+    document.getElementById('category').textContent = 'Category: ' + category;
+    document.getElementById('postTitle').querySelector('h1').textContent = postTitle;
+</script>
 </body>
 </html>
