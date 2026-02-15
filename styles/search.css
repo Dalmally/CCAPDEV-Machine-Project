@@ -1,16 +1,4 @@
-/* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-/* BODY */
-.search-body {
-  background-color: #ffffff;
-  font-family: monospace;
-  padding: 60px 20px;
-}
 
 /* CONTAINER */
 .search-container {

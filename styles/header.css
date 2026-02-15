@@ -1,0 +1,117 @@
+/* ========== HEADER STYLES ========== */
+.header {
+    position: fixed;
+    top: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 30px auto;
+    border: 2px solid #000000;
+    border-radius: 12px;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+    color: #0c6543;;
+    border: 2px solid #000000;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.logo:hover {
+    background-color: #0c6543;
+    color: #ffffff;
+}
+
+.nav-links {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.nav-btn {
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #0c6543;;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.nav-btn:hover {
+    background-color: #0c6543;;
+    color: #ffffff;
+}
+
+/* Categories button - special styling to indicate it opens sidebar */
+.categories-btn {
+    position: relative;
+    padding-right: 36px;
+}
+
+.categories-btn::after {
+    content: "►";
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    transition: transform 0.2s ease;
+}
+
+.categories-btn:hover::after {
+    transform: translateY(-50%) translateX(3px);
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.login-btn, .register-btn {
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 20px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.login-btn {
+    background-color: #ffffff;
+    color: #0c6543;;
+}
+
+.login-btn:hover {
+    background-color: #0c6543;
+    color: #ffffff;
+}
+
+.register-btn {
+    background-color: #0c6543;
+    color: #ffffff;
+}
+
+.register-btn:hover {
+    background-color: #ffffff;
+    color: #0c6543;
+}

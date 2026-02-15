@@ -5,18 +5,7 @@
   box-sizing: border-box;
 }
 
-body {
-  background-color: #ffffff;
-  color: #000000;
-  font-family: monospace;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  flex-direction: column;
-  gap: 10px;
-}
+
 
 .container {
   width: 100%;
@@ -30,7 +19,6 @@ body {
   align-items: flex-start;
   padding: 20px;
 }
-
 #icon-section {
   flex-shrink: 0; 
 }
