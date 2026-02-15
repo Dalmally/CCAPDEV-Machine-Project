@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Categories | Tech Mod Forum</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; height: 100vh; background: #f0f2f5; }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 280px;
+            background: #ffffff;
+            border-right: 1px solid #ddd;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar h2 { font-size: 1.2rem; color: #333; margin-bottom: 20px; }
+
+        .category-list { list-style: none; padding: 0; }
+
+        .category-item {
+            display: block;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            color: #444;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .category-item:hover, .category-item.active {
+            background: #007bff;
+            color: white;
+        }
+
+        /* Main Feed Styling */
+        .feed-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 30px;
+        }
+
+        .feed-header { margin-bottom: 30px; }
+
+        .post-card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .post-card h3 { margin-top: 0; color: #007bff; }
+        .post-meta { font-size: 0.85rem; color: #777; margin-bottom: 10px; }
+        .read-more { color: #28a745; text-decoration: none; font-weight: bold; }
+
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h2>Categories</h2>
+        <nav class="category-list">
+            <a href="?cat=1" class="category-item active">Electronic Schemas</a>
+            <a href="?cat=2" class="category-item">Hardware Repair</a>
+            <a href="?cat=3" class="category-item">Firmware Mods</a>
+            <a href="?cat=4" class="category-item">Mobile Development</a>
+            <a href="?cat=5" class="category-item">Sideloading</a>
+        </nav>
+        <hr style="width:100%; border:0; border-top:1px solid #eee; margin: 20px 0;">
+        <a href="index.html" class="category-item">← Back to Home</a>
+    </aside>
+
+    <main class="feed-container">
+        <div class="feed-header">
+            <h1>Posts in: Electronic Schemas</h1>
+            <p>Showing the latest technical diagrams and circuit discussions.</p>
+        </div>
+
+        <article class="post-card">
+            <div class="post-meta">Posted by CircuitWiz • 2 hours ago</div>
+            <h3>iPhone 13 Logic Board Mapping</h3>
+            <p>I've finally finished the high-res schema for the power rails on the A15 chip...</p>
+            <a href="viewpost.html" class="read-more">View Full Thread →</a>
+        </article>
+
+        <article class="post-card">
+            <div class="post-meta">Posted by VoltHunter • Yesterday</div>
+            <h3>Correcting Resistance on GPU VRMs</h3>
+            <p>If you're seeing 0 ohms on the 12v rail, check these three capacitors first...</p>
+            <a href="viewpost.html" class="read-more">View Full Thread →</a>
+        </article>
+    </main>
+
+</body>
+</html>

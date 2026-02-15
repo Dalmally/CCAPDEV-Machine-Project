@@ -7,6 +7,31 @@
     <link rel="stylesheet" href="styles/home.css">
 </head>
 <body>
+<a href="createpost.html" class="btn-create-post">+ Create Post</a>
+<style>
+    .btn-create-post {
+        position: fixed; /* 'fixed' keeps it visible even when scrolling */
+        top: 20px;
+        right: 20px;
+        padding: 12px 24px;
+        background-color: #28a745;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+        font-family: sans-serif;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        z-index: 1000; /* Ensures it stays above post content */
+        transition: transform 0.2s ease;
+    }
+
+    .btn-create-post:hover {
+        background-color: #218838;
+        transform: translateY(-2px);
+    }
+</style>
+
+    
     <div class="main-content">
         <h1>Welcome to Tech Mod Forum</h1>
         <div class="sidebar">
@@ -17,6 +42,7 @@
                 <li><a href="categories.html?category=3">Firmware Mods</a></li>
                 <li><a href="categories.html?category=4">Mobile Development</a></li>
                 <li><a href="categories.html?category=5">Sideloading</a></li>
+                <li><a href="viewcategory.html">View Category</a></li>
             </ul>
         </div>
         <br>
