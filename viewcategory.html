@@ -102,11 +102,7 @@
     <header class="header">
         <a href="index.html" class="logo">FORUM</a>
 
-        <nav class="nav-links">
-            <button class="nav-btn categories-btn" id="categoriesBtn">Categories</button>
-            <a href="search.html" class="nav-btn">Search</a>
-            <a href="profile.html" class="nav-btn">Profile</a>
-        </nav>
+        {{nav}}
 
         <div class="auth-buttons">
             <a href="login.html" class="login-btn">Log in</a>
@@ -117,52 +113,27 @@
     <script src="scripts/categories.js"></script>
     
     <main class="feed-container">
+        {{#if category}}
         <div class="feed-header">
-            <h1>Posts in: Electronic Schemas</h1>
-            <p>Showing the latest technical diagrams and circuit discussions.</p>
+            <h1>Posts in: {{category.name}}</h1>
+            <p>{{category.description}}</p>
         </div>
+        {{else}}
+        <p>Category not found.</p>
+        {{/if}}
 
+        {{#if posts.length}}
+        {{#each posts}}
         <article class="post-card">
-            <div class="post-meta">Posted by CircuitWiz • 2 hours ago</div>
-            <h3>iPhone 13 Logic Board Mapping</h3>
-            <p>I've finally finished the high-res schema for the power rails on the A15 chip...</p>
+            <div class="post-meta">Posted by {{author}} at {{date}}</div>
+            <h3>{{title}}</h3>
+            <p>{{contentPreview}}</p>
             <a href="viewpost.html" class="read-more">View Full Thread →</a>
         </article>
-
-        <article class="post-card">
-            <div class="post-meta">Posted by RockyB123 • Yesterday</div>
-            <h3>Correcting Resistance on GPU VRMs</h3>
-            <p>If you're seeing 0 ohms on the 12v rail, check these three capacitors first...</p>
-            <a href="viewpost.html" class="read-more">View Full Thread →</a>
-        </article>
-
-        <article class="post-card">
-            <div class="post-meta">Posted by RockyB123 • Yesterday</div>
-            <h3>Correcting Resistance on GPU VRMs</h3>
-            <p>If you're seeing 0 ohms on the 12v rail, check these three capacitors first...</p>
-            <a href="viewpost.html" class="read-more">View Full Thread →</a>
-        </article>
-
-        <article class="post-card">
-            <div class="post-meta">Posted by RockyB123 • Yesterday</div>
-            <h3>Correcting Resistance on GPU VRMs</h3>
-            <p>If you're seeing 0 ohms on the 12v rail, check these three capacitors first...</p>
-            <a href="viewpost.html" class="read-more">View Full Thread →</a>
-        </article>
-
-        <article class="post-card">
-            <div class="post-meta">Posted by RockyB123 • Yesterday</div>
-            <h3>Correcting Resistance on GPU VRMs</h3>
-            <p>If you're seeing 0 ohms on the 12v rail, check these three capacitors first...</p>
-            <a href="viewpost.html" class="read-more">View Full Thread →</a>
-        </article>
-
-        <article class="post-card">
-            <div class="post-meta">Posted by RockyB123 • Yesterday</div>
-            <h3>Correcting Resistance on GPU VRMs</h3>
-            <p>If you're seeing 0 ohms on the 12v rail, check these three capacitors first...</p>
-            <a href="viewpost.html" class="read-more">View Full Thread →</a>
-        </article>
+        {{/each}}
+        {{else}}
+        <p>No posts in this category yet.</p>
+        {{/if}}
     </main>
 
 </body>

@@ -99,11 +99,7 @@
     <header class="header">
         <a href="index.html" class="logo">FORUM</a>
 
-        <nav class="nav-links">
-            <button class="nav-btn categories-btn" id="categoriesBtn">Categories</button>
-            <a href="search.html" class="nav-btn">Search</a>
-            <a href="profile.html" class="nav-btn">Profile</a>
-        </nav>
+        {{nav}}
 
         <div class="auth-buttons">
             <a href="login.html" class="login-btn">Log in</a>
@@ -116,36 +112,17 @@
     
     <div class="main-content">
         <h1>Welcome to The Tech Mod Forum!</h1>
-        <br>
-        <div class="post">
-    <p>Category: Electronic Schemas</p>
-    <a href="viewpost.html?category=1&title=Post Title 1" class="post-title"><h2>Post Title 1</h2></a>
-    <p>Post content preview goes here...</p>
-</div>
-<br>
-<div class="post">
-    <p>Category: Hardware Repair & Teardown</p>
-    <a href="viewpost.html?category=2&title=Post Title 2" class="post-title"><h2>Post Title 2</h2></a>
-    <p>Post content preview goes here...</p>
-</div>
-<br>
-<div class="post">
-    <p>Category: Firmware Mods</p>
-    <a href="viewpost.html?category=3&title=Post Title 3" class="post-title"><h2>Post Title 3</h2></a>
-    <p>Post content preview goes here...</p>
-</div>
-<br>
-<div class="post">
-    <p>Category: Mobile Development</p>
-    <a href="viewpost.html?category=4&title=Post Title 4" class="post-title"><h2>Post Title 4</h2></a>
-    <p>Post content preview goes here...</p>
-</div>
-<br>
-<div class="post">
-    <p>Category: Sideloading</p>
-    <a href="viewpost.html?category=5&title=Post Title 5" class="post-title"><h2>Post Title 5</h2></a>
-    <p>Post content preview goes here...</p>
-</div>
+        {{#if posts.length}}
+  {{#each posts}}
+    <div class="post">
+      <p>Category: {{category}}</p>
+      <a href="viewpost.html?category={{categoryId}}&title={{title}}" class="post-title"><h2>{{title}}</h2></a>
+      <p>{{contentPreview}}</p>
+    </div>
     <br>
-</body>
+    {{/each}}
+    {{else}}
+    <p>No posts yet!</p>
+    {{/if}}
+    </div>
 </html>

@@ -75,11 +75,7 @@
     <header class="header">
         <a href="index.html" class="logo">FORUM</a>
 
-        <nav class="nav-links">
-            <button class="nav-btn categories-btn" id="categoriesBtn">Categories</button>
-            <a href="search.html" class="nav-btn">Search</a>
-            <a href="profile.html" class="nav-btn">Profile</a>
-        </nav>
+        {{nav}}
 
         <div class="auth-buttons">
             <a href="login.html" class="login-btn">Log in</a>
@@ -90,13 +86,14 @@
     <script src="scripts/categories.js"></script>
 
     <div class="post-container">
-        <span class="post-title" id="postTitle"><h1>Post Title 1</h1></span>
+        {{#if post}}
+        <span class="post-title" id="postTitle"><h1>{{post.title}}</h1></span>
         <div class="post-category">
-            <span class="category-label" id="category">Category: </span>
+            <span class="category-label" id="category">Category: {{post.category}}</span>
         </div>
         <br>
         <div class="post-content">
-            <p>Post content goes here...</p>
+            <p>{{post.content}}</p>
         </div>
         <div class="post-actions">
             <button class="upvote">Upvote <span class="icon">👍</span></button>
@@ -106,28 +103,21 @@
         <div class="post-footer">
             <a href="login.html">Login to vote, comment, or post</a>
         </div>
+        {{else}}
+        <p>Post not found.</p>
+        {{/if}}
         <div class="comments-section">
             <h3>Comments</h3>
-            <p>Comments go here...</p>
+            {{#if comments.length}}
+            {{#each comments}}
+            <p>{{content}}</p>
+            {{/each}}
+            {{else}}
+            <p>No comments yet. Start the discussion!</p>
+            {{/if}}
         </div>
     </div>
 
-   <script>
-    const categories = {
-        1: 'Electronic Schemas',
-        2: 'Hardware Repair & Teardown',
-        3: 'Firmware Mods',
-        4: 'Mobile Development',
-        5: 'Sideloading'
-    };
 
-    const url = new URL(window.location.href);
-    const categoryId = url.searchParams.get('category') || '1';
-    const postTitle = url.searchParams.get('title') || 'Post Title 1';
-    const category = categories[categoryId] || 'Electronic Schemas';
-    
-    document.getElementById('category').textContent = 'Category: ' + category;
-    document.getElementById('postTitle').querySelector('h1').textContent = postTitle;
-</script>
 </body>
 </html>

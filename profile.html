@@ -76,11 +76,7 @@
     <header class="header">
         <a href="index.html" class="logo">FORUM</a>
 
-        <nav class="nav-links">
-            <button class="nav-btn categories-btn" id="categoriesBtn">Categories</button>
-            <a href="search.html" class="nav-btn">Search</a>
-            <a href="profile.html" class="nav-btn">Profile</a>
-        </nav>
+        {{nav}}
 
         <div class="auth-buttons">
             <a href="login.html" class="login-btn">Log in</a>
@@ -98,26 +94,32 @@
         </div>
 
         <div id="details-section">
+            {{#if user}}
             <div id="username">
-                <h2>RockyB123</h2>
+                <h2>{{user.username}}</h2>
             </div>
             <div id="bio">
-                <p>My Homelab is much bigger than yours</p>
+                <p>{{user.bio}}</p>
             </div>
             <div id = badge>
-                <p>Elite Mehanic</p>
+                <p>{{user.badge}}</p>
             </div>
+            {{else}}
+            <p>User not found.</p>
+            {{/if}}
         </div>
     </div>
 
     <div class="container">
         <div id="posts">
+            {{#each user.posts}}
             <article class="post-card">
-                <div class="post-meta">Posted by RockyB123 • Yesterday</div>
-                <h3>Correcting Resistance on GPU VRMs</h3>
-                <p>If you're seeing 0 ohms on the 12v rail, check these three capacitors first...</p>
+                <div class="post-meta">Posted by {{../user.username}} • {{date}}</div>
+                <h3>{{title}}</h3>
+                <p>{{contentPreview}}</p>
                 <a href="viewpost.html" class="read-more">View Full Thread →</a>
             </article>
+            {{/each}}
         </div>
     </div>
     
