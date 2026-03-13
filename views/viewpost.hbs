@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Post</title>
+    <link rel="stylesheet" href="styles/viewpost.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/categories.css">
+</head>
+<body>
+    <!--Sidebar-->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <h2 class="sidebar-logo">Categories</h2>
+        <button class="close-sidebar" id="closeSidebarBtn">✕</button>
+
+        <nav class="sidebar-nav">
+            <ul class="menu">
+                <li class="menu-category">
+                    Electronic Schemas
+                    <ul>
+                        <li><a href="viewcategory.html">Android</a></li>
+                        <li><a href="viewcategory.html">iPhone</a></li>
+                        <li><a href="viewcategory.html">iPad</a></li>
+                        <li><a href="viewcategory.html">Xbox</a></li>
+                        <li><a href="viewcategory.html">Playstation</a></li>
+                    </ul>
+                </li>
+
+            <li class="menu-category">
+                Hardware Repair & Teardown
+                <ul>
+                    <li><a href="viewcategory.html">Console</a></li>
+                    <li><a href="viewcategory.html">Android</a></li>
+                    <li><a href="viewcategory.html">Apple</a></li>
+                    <li><a href="viewcategory.html">Nintendo</a></li>
+                    <li><a href="viewcategory.html">General Electronics</a></li>
+                </ul>
+            </li>
+
+            <li class="menu-category">
+                Firmware Mods
+                <ul>
+                    <li><a href="viewcategory.html">Console</a></li>
+                    <li><a href="viewcategory.html">Android</a></li>
+                    <li><a href="viewcategory.html">Nintendo</a></li>
+                    <li><a href="viewcategory.html">General Electronics</a></li>
+                </ul>
+            </li>
+
+            <li class="menu-category">
+                Mobile Development
+                <ul>
+                    <li><a href="viewcategory.html">Android</a></li>
+                    <li><a href="viewcategory.html">iOS / iPadOS</a></li>
+                </ul>
+            </li>
+
+            <li class="menu-category">
+                Sideloading
+                <ul>
+                    <li><a href="viewcategory.html">iOS</a></li>
+                    <li><a href="viewcategory.html">iPadOS</a></li>
+                </ul>
+            </li>
+
+            </ul>
+        </nav>
+    </aside>
+
+    <!--Header-->
+
+    <header class="header">
+        <a href="index.html" class="logo">FORUM</a>
+
+        {{nav}}
+
+        <div class="auth-buttons">
+            <a href="login.html" class="login-btn">Log in</a>
+            <a href="registration.html" class="register-btn">Register</a>
+        </div>
+    </header>
+
+    <script src="scripts/categories.js"></script>
+
+    <div class="post-container">
+        {{#if post}}
+        <span class="post-title" id="postTitle"><h1>{{post.title}}</h1></span>
+        <div class="post-category">
+            <span class="category-label" id="category">Category: {{post.category}}</span>
+        </div>
+        <br>
+        <div class="post-content">
+            <p>{{post.content}}</p>
+        </div>
+        <div class="post-actions">
+            <button class="upvote">Upvote <span class="icon">👍</span></button>
+            <button class="downvote">Downvote <span class="icon">👎</span></button>
+            <button class="comment">Comment <span class="icon">💬</span></button>
+        </div>
+        <div class="post-footer">
+            <a href="login.html">Login to vote, comment, or post</a>
+        </div>
+        {{else}}
+        <p>Post not found.</p>
+        {{/if}}
+        <div class="comments-section">
+            <h3>Comments</h3>
+            {{#if comments.length}}
+            {{#each comments}}
+            <p>{{content}}</p>
+            {{/each}}
+            {{else}}
+            <p>No comments yet. Start the discussion!</p>
+            {{/if}}
+        </div>
+    </div>
+
+
+</body>
+</html>
