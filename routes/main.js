@@ -23,14 +23,6 @@ router.get('/createpost', (req, res) => {
     res.render('createpost')
 })
 
-router.get('/login', (req, res) => {
-    res.render('login')
-})
-
-router.get('/registration', (req, res) => {
-    res.render('registration')
-})
-
 router.get('/editprofile', (req, res) => {
     res.render('editprofile')
 })
@@ -47,4 +39,4 @@ router.get('/viewpost', (req, res) => {
     res.render('viewpost')
 })
 
-module.exports = router;
+module.exports = router
