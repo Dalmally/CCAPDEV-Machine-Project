@@ -1,0 +1,15 @@
+This is the list of stuff we have installed
+
+"dependencies": {
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "express-handlebars": "^8.0.6",
+    "mongodb": "^7.1.0",
+    "mongoose": "^9.3.0",
+    "nodemon": "^3.1.14"
+  }
+
+Use the command in your terminal below to install everything all at once
+(Make sure the terminal is in the correct folder)
+
+npm i dotenv express express-handlebars mongodb mongoose nodemon
