@@ -11,36 +11,40 @@ router.get('/', (req, res) => {
     res.render('index', data)
 })
 
+router.get('/home', (req, res) => {
+    res.render('home')
+})
+
 router.get('/viewcategory', (req, res) => {
-    res.render('iewcategory', data)
+    res.render('iewcategory')
 })
 
 router.get('/createpost', (req, res) => {
-    res.render('createpost', data)
+    res.render('createpost')
 })
 
 router.get('/login', (req, res) => {
-    res.render('login', data)
+    res.render('login')
 })
 
 router.get('/registration', (req, res) => {
-    res.render('registration', data)
+    res.render('registration')
 })
 
 router.get('/editprofile', (req, res) => {
-    res.render('editprofile', data)
+    res.render('editprofile')
 })
 
 router.get('/profile', (req, res) => {
-    res.render('profile', data)
+    res.render('profile')
 })
 
 router.get('/search', (req, res) => {
-    res.render('search', data)
+    res.render('search')
 })
 
 router.get('/viewpost', (req, res) => {
-    res.render('viewpost', data)
+    res.render('viewpost')
 })
 
 module.exports = router;
