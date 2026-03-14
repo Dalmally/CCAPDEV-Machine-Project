@@ -100,13 +100,13 @@
     <!--Header-->
 
     <header class="header">
-        <a href="index.html" class="logo">FORUM</a>
+        <a href="index" class="logo">FORUM</a>
 
         {{nav}}
 
         <div class="auth-buttons">
-            <a href="login.html" class="login-btn">Log in</a>
-            <a href="registration.html" class="register-btn">Register</a>
+            <a href="login" class="login-btn">Log in</a>
+            <a href="registration" class="register-btn">Register</a>
         </div>
     </header>
 
@@ -128,7 +128,7 @@
             <div class="post-meta">Posted by {{author}} at {{date}}</div>
             <h3>{{title}}</h3>
             <p>{{contentPreview}}</p>
-            <a href="viewpost.html" class="read-more">View Full Thread →</a>
+            <a href="viewpost/{{id}}" class="read-more">View Full Thread →</a>
         </article>
         {{/each}}
         {{else}}
