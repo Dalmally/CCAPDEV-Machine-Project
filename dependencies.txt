@@ -12,4 +12,4 @@ This is the list of stuff we have installed
 Use the command in your terminal below to install everything all at once
 (Make sure the terminal is in the correct folder)
 
-npm i dotenv express express-handlebars mongodb mongoose nodemon
+npm i dotenv express express-handlebars mongodb mongoose nodemon connect-mongo
