@@ -4,6 +4,7 @@ const registerController = {
     showRegisterForm: (req, res) => {
         res.render('register', {
             title: 'Register',
+            pageCss: 'register',
             error: null,
             success: null,
             formData: {}

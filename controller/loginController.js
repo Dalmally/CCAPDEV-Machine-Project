@@ -5,6 +5,7 @@ const loginController = {
     showLoginForm: (req, res) => {
         res.render('login', {
             title: 'Login',
+            pageCss: 'login',
             error: null,
             email: '' 
         })
