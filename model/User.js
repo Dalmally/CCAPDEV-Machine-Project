@@ -46,12 +46,11 @@ const userSchema = new mongoose.Schema({
 });
 
 // Auto-increment user_id before saving
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', async function () {
     if (this.isNew) {
         const lastUser = await mongoose.model('User').findOne().sort({ user_id: -1 });
         this.user_id = lastUser ? lastUser.user_id + 1 : 1;
     }
-    next();
 });
 
 module.exports = mongoose.model('User', userSchema);

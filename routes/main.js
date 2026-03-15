@@ -27,7 +27,19 @@ router.get('/', (req, res) => {
 
 router.get('/home', async (req, res) => {
     try {
-        const posts = await Post.find().sort({ created_at: -1 }).populate({ path: 'user_id', model: 'User', foreignField: 'user_id', select: 'username' }).populate({ path: 'category_id', model: 'Category', foreignField: 'id', select: 'name' }).limit(10)
+        const posts = await Post.find().sort({
+             created_at: -1 
+            }).populate({ 
+                path: 'user_id',
+                model: 'User', 
+                foreignField: 'user_id', 
+                select: 'username' 
+            }).populate({ 
+                path: 'category_id', 
+                model: 'Category', 
+                foreignField: 'id', 
+                select: 'name' }).limit(10)
+                
         const menuItems = await getMenuItems()
         res.render('home', {
             title: 'Home',

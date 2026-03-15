@@ -25,12 +25,11 @@ const adminSchema = new mongoose.Schema({
 });
 
 // Auto-increment admin_id before saving
-adminSchema.pre('save', async function (next) {
+adminSchema.pre('save', async function () {
     if (this.isNew) {
         const lastAdmin = await mongoose.model('Admin').findOne().sort({ admin_id: -1 });
         this.admin_id = lastAdmin ? lastAdmin.admin_id + 1 : 1;
     }
-    next();
 });
 
 module.exports = mongoose.model('Admin', adminSchema);

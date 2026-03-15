@@ -9,6 +9,14 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  background-image: url('/back.jpg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
 body {
   background-color: #050505;
   color: #e0e0e0;

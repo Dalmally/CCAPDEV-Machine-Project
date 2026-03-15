@@ -1,3 +1,18 @@
+/* ========== RESET ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url('/back.jpg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
 /* ========== CONTAINER ========== */
 .login-container {
   width: 100%;

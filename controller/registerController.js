@@ -37,6 +37,7 @@ const registerController = {
                 const menuItems = await getMenuItems()
                 return res.render('registration', {
                     title: 'Register',
+                    pageCss: 'registration',
                     formData: { email, username },
                     menuItems: menuItems
                 })
@@ -60,6 +61,7 @@ const registerController = {
                 const menuItems = await getMenuItems()
                 return res.render('registration', {
                     title: 'Register',
+                    pageCss: 'registration',
                     formData: { email, username },
                     menuItems: menuItems
                 })
@@ -86,6 +88,7 @@ const registerController = {
             const menuItems = await getMenuItems()
             res.render('registration', {
                 title: 'Register',
+                pageCss: 'registration',
                 formData: req.body,
                 menuItems: menuItems
             })

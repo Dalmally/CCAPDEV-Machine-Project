@@ -37,6 +37,7 @@ const loginController = {
                 const menuItems = await getMenuItems()
                 return res.render('login', {
                     title: 'Login',
+                    pageCss: 'login',
                     email: email || '',
                     menuItems: menuItems
                 })
@@ -52,6 +53,7 @@ const loginController = {
                 const menuItems = await getMenuItems()
                 return res.render('login', {
                     title: 'Login',
+                    pageCss: 'login',
                     email: email,
                     menuItems: menuItems
                 })
@@ -62,6 +64,7 @@ const loginController = {
                 const menuItems = await getMenuItems()
                 return res.render('login', {
                     title: 'Login',
+                    pageCss: 'login',
                     email: email,
                     menuItems: menuItems
                 })
@@ -74,6 +77,7 @@ const loginController = {
             const menuItems = await getMenuItems()
             res.render('login', {
                 title: 'Login',
+                pageCss: 'login',
                 email: req.body.email || '',
                 menuItems: menuItems
             })
