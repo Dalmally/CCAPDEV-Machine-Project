@@ -27,6 +27,14 @@ app.use('/', registerRoutes)
 app.use('/', loginRoutes)
 app.use('/', profileRoutes)
 
+connectToMongo((err) => {
+    if (err) {
+        console.error('failed to connect to MongoDB');
+    } else {
+        console.log('MongoDB connection established')
+    }
+})
+
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
 })

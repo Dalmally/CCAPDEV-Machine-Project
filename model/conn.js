@@ -1,23 +1,33 @@
-const { MongoClient } = require('mongodb')
+const mongoose = require('mongoose')
 
 const mongoURI = process.env.MONGODB_URI
-const client = new MongoClient(mongoURI);
+
+let isConnected = false
 
 function connectToMongo(callback) {
-    client.connect().then( (client) => {
-        return callback();
-    }).catch( err => {
-        callback(err);
+    mongoose.connect(mongoURI)
+    .then(() => {
+        isConnected = true;
+        console.log('Connected to MongoDB');
+        callback(); 
+    })
+    .catch(err => {
+        isConnected = false;
+        console.error('MongoDB connection error:', err);
+        callback(err); 
     })
 }
 
-function getDb(dbName = "users") {
-    return client.db(dbName);
+function getDb() {
+    if (!isConnected) {
+        throw new Error('Database not connected.');
+    }
+    return mongoose.connection.db;
 }
 
 function signalHandler(signal) {
     console.log("Closing MongoDB connection...");
-    client.close();
+    mongoose.connection.close()
     process.exit();
 }
 
@@ -29,3 +39,4 @@ module.exports = {
     connectToMongo,
     getDb
 }
+
