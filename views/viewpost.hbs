@@ -21,18 +21,48 @@
     <p>Post not found.</p>
     {{/if}}
     <div class="comments-section">
-        <h3>Comments</h3>
-        {{#if comments.length}}
-        {{#each comments}}
-        <p><a href="/profile/{{user_id.username}}">{{user_id.username}}</a>: {{content}}</p>
-        {{/each}}
-        {{else}}
-        <p>No comments yet. Start the discussion!</p>
-        {{/if}}
+        <h3>Comments <span class="comment-count">{{comments.length}}</span></h3>
+        <div class="comments-list">
+            {{#if comments.length}}
+            {{#each comments}}
+            <div class="comment-card">
+                <div class="comment-meta">
+                    <a href="/profile/{{user_id.username}}" class="comment-author">@{{user_id.username}}</a>
+                    <span class="comment-dot">·</span>
+                    <span class="comment-date">{{created_at}}</span>
+                </div>
+                <p class="comment-body">{{content}}</p>
+            </div>
+            {{/each}}
+            {{else}}
+            <div class="no-comments">
+                <span class="no-comments-icon">💬</span>
+                <p>No comments yet. Start the discussion!</p>
+            </div>
+            {{/if}}
+        </div>
         <form action="/comment/add" method="post" class="add-comment-form">
-            <textarea name="content" placeholder="Add a comment..." required></textarea>
+            <div class="form-header">
+                <label for="comment-input" class="form-label">Leave a comment</label>
+                <span class="char-count" id="charCount">0 / 500</span>
+            </div>
+            <div class="textarea-wrapper">
+                <textarea
+                    id="comment-input"
+                    name="content"
+                    placeholder="What are your thoughts?"
+                    required
+                    maxlength="500"
+                    rows="4"
+                    oninput="document.getElementById('charCount').textContent = this.value.length + ' / 500'; this.closest('.textarea-wrapper').classList.toggle('near-limit', this.value.length >= 400);"
+                ></textarea>
+            </div>
             <input type="hidden" name="post_id" value="{{post.post_id}}">
-            <button type="submit">Add Comment</button>
+            <div class="form-footer">
+                <button type="submit" class="submit-comment">
+                    Post Comment <span class="icon">↵</span>
+                </button>
+            </div>
         </form>
     </div>
 </div>
