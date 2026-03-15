@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
     avatar_url: {
         type: String,
         maxlength: 255,
-        default: '/public/default-avatar.jpg'
+        default: '/default-avatar.jpg'
     },
     badge: {
         type: String,

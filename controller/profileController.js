@@ -56,7 +56,7 @@ const profileController = {
                     username: user.username,
                     bio: user.bio || 'No bio',
                     badge: user.badge,
-                    avatar_url: user.avatar_url || '/public/default-avatar.jpg',
+                    avatar_url: user.avatar_url || '/default-avatar.jpg',
                     posts: formattedPosts,
                     postCount: posts.length
                 },
