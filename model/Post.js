@@ -45,18 +45,16 @@ const postSchema = new mongoose.Schema({
 });
 
 // Auto-increment post_id before saving
-postSchema.pre('save', async function (next) {
+postSchema.pre('save', async function () {
     if (this.isNew) {
         const lastPost = await mongoose.model('Post').findOne().sort({ post_id: -1 });
         this.post_id = lastPost ? lastPost.post_id + 1 : 1;
     }
-    next();
 });
 
 // Update updated_at on every save
-postSchema.pre('save', function (next) {
+postSchema.pre('save', function () {
     this.updated_at = Date.now();
-    next();
 });
 
 module.exports = mongoose.model('Post', postSchema);

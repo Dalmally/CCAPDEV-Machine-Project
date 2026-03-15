@@ -11,8 +11,12 @@
             <label for="category">Select Category</label>
             <select id="category" name="category_id" required>
                 <option value="" disabled selected>-- Choose a category --</option>
-                {{#each categories}}
-                <option value="{{id}}">{{name}}</option>
+                {{#each categoryGroups}}
+                <optgroup label="{{parent}}">
+                    {{#each subs}}
+                    <option value="{{id}}">{{name}}</option>
+                    {{/each}}
+                </optgroup>
                 {{/each}}
             </select>
         </div>
