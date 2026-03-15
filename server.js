@@ -2,9 +2,13 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const path= require('path')
 require('dotenv').config()
+const { connectToMongo, getDb } = require('./conn');
+
+//Routing stuff
 const setupFormHandling = require('./middleware/form-handling')
 const registerRoutes = require('./routes/registerRoutes')
 const loginRoutes = require('./routes/loginRoutes')
+const profileRoutes = require('./routes/profileRoutes')
 
 const app = express()
 app.use(express.static('public'))
@@ -18,9 +22,16 @@ app.set("views", "./views")
 
 const PORT = 3000 || process.env.PORT
 
-app.use('/', require('./server/routes/main'))
+app.use('/', require('./server/routes/main')) //Only here during development
 app.use('/', registerRoutes)
 app.use('/', loginRoutes)
+app.use('/', profileRoutes)
+
+connectToMongo().then(() => {
+    console.log('MongoDB Connection Established')
+}).catch(err => {
+    console.error('failed to connect to MongoDB: ', err)
+})
 
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)

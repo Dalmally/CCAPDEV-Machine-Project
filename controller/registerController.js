@@ -25,7 +25,7 @@ const registerController = {
             }
 
             
-            const existingUser = await User.findOne({
+            const existingUser = await usersCollection.findOne({
                 $or: [
                     { email: email.toLowerCase() },
                     { username: username }
@@ -62,11 +62,10 @@ const registerController = {
                 email: newUser.email
             })
 
-            // Success - redirect to login or show success message
             res.render('register', {
                 title: 'Register',
                 success: 'Registration successful! Please log in.',
-                formData: {} // Clear form
+                formData: {}
             })
 
         } catch (error) {

@@ -1,127 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/profile.css">
-    <link rel="stylesheet" href="styles/header.css">
-    <link rel="stylesheet" href="styles/categories.css">
-    <title>Profile</title>
-</head>
-<body>
-
-    <!--Sidebar-->
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
-    <aside class="sidebar" id="sidebar">
-        <h2 class="sidebar-logo">Categories</h2>
-        <button class="close-sidebar" id="closeSidebarBtn">✕</button>
-
-        <nav class="sidebar-nav">
-            <ul class="menu">
-                <li class="menu-category">
-                    Electronic Schemas
-                    <ul>
-                        <li><a href="viewcategory">Android</a></li>
-                        <li><a href="viewcategory">iPhone</a></li>
-                        <li><a href="viewcategory">iPad</a></li>
-                        <li><a href="viewcategory">Xbox</a></li>
-                        <li><a href="viewcategory">Playstation</a></li>
-                    </ul>
-                </li>
-
-            <li class="menu-category">
-                Hardware Repair & Teardown
-                <ul>
-                    <li><a href="viewcategory.html">Console</a></li>
-                    <li><a href="viewcategory.html">Android</a></li>
-                    <li><a href="viewcategory.html">Apple</a></li>
-                    <li><a href="viewcategory.html">Nintendo</a></li>
-                    <li><a href="viewcategory.html">General Electronics</a></li>
-                </ul>
-            </li>
-
-            <li class="menu-category">
-                Firmware Mods
-                <ul>
-                    <li><a href="viewcategory.html">Console</a></li>
-                    <li><a href="viewcategory.html">Android</a></li>
-                    <li><a href="viewcategory.html">Nintendo</a></li>
-                    <li><a href="viewcategory.html">General Electronics</a></li>
-                </ul>
-            </li>
-
-            <li class="menu-category">
-                Mobile Development
-                <ul>
-                    <li><a href="viewcategory.html">Android</a></li>
-                    <li><a href="viewcategory.html">iOS / iPadOS</a></li>
-                </ul>
-            </li>
-
-            <li class="menu-category">
-                Sideloading
-                <ul>
-                    <li><a href="viewcategory.html">iOS</a></li>
-                    <li><a href="viewcategory.html">iPadOS</a></li>
-                </ul>
-            </li>
-
-            </ul>
-        </nav>
-    </aside>
-
-    <!--Header-->
-
-    <header class="header">
-        <a href="index" class="logo">FORUM</a>
-
-        {{nav}}
-
-        <div class="auth-buttons">
-            <a href="login" class="login-btn">Log in</a>
-            <a href="registration" class="register-btn">Register</a>
-        </div>
-    </header>
-
-    <script src="scripts/categories.js"></script>
-
-    <div class="container">
-        <div id="icon-section">
-            <div id="icon-div">
-                <img src="public/default-avatar.jpg" alt="Default Avatar" id="avatar">
-            </div>
-        </div>
-
-        <div id="details-section">
-            {{#if user}}
-            <div id="username">
-                <h2>{{user.username}}</h2>
-            </div>
-            <div id="bio">
-                <p>{{user.bio}}</p>
-            </div>
-            <div id = badge>
-                <p>{{user.badge}}</p>
-            </div>
-            {{else}}
-            <p>User not found.</p>
-            {{/if}}
+<div class="container">
+    <div id="icon-section">
+        <div id="icon-div">
+            <img src="{{avatar_url}}" alt="User avatar" id="avatar">
         </div>
     </div>
 
-    <div class="container">
-        <div id="posts">
-            {{#each user.posts}}
-            <article class="post-card">
-                <div class="post-meta">Posted by {{../user.username}} • {{date}}</div>
-                <h3>{{title}}</h3>
-                <p>{{contentPreview}}</p>
-                <a href="viewpost" class="read-more">View Full Thread →</a>
-            </article>
-            {{/each}}
+    <div id="details-section">
+        {{#if user}}
+        <div id="username">
+            <h2>{{user.username}}</h2>
         </div>
+        <div id="bio">
+            <p>{{user.bio}}</p>
+        </div>
+        <div id = badge>
+            <p>{{user.badge}}</p>
+        </div>
+        {{else}}
+        <p>User not found.</p>
+        {{/if}}
     </div>
-    
-</body>
-</html>
+</div>
+
+<div class="container">
+    <div id="posts">
+        {{if user.posts.length}}
+        {{#each user.posts}}
+        <article class="post-card">
+            <div class="post-meta">Posted by {{../user.username}} • {{date}}</div>
+            <h3>{{title}}</h3>
+            <p>{{contentPreview}}</p>
+            <a href="viewpost" class="read-more">View Full Thread →</a>
+        </article>
+        {{/each}}
+    </div>
+</div>
