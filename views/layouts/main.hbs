@@ -3,12 +3,18 @@
 <head>
     <meta charset="utf-8">
     <title>{{title}}</title>
-    <link rel="stylesheet" href="../../styles/main.css">
-    <link rel="stylesheet" href="../../styles/header.css">
-    <link rel="stylesheet" href="../../styles/categories.css">
-    <link rel="stylesheet" href="../../styles/{{pageCss}}.css">
+    <link rel="stylesheet" href="../../public/styles/main.css">
+    <link rel="stylesheet" href="../../public/styles/header.css">
+    <link rel="stylesheet" href="../../public/styles/categories.css">
+    <link rel="stylesheet" href="../../public/styles/{{pageCss}}.css">
 </head>
 <body>
+    {{> categories}}
+
+    {{> header}}
+
     {{{ body }}}
+
+    <script src="../../public/scripts/categories.js"></script>
 </body>
 </html>

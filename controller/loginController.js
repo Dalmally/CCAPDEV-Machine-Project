@@ -6,7 +6,6 @@ const loginController = {
         res.render('login', {
             title: 'Login',
             pageCss: 'login',
-            error: null,
             email: '' 
         })
     },
@@ -18,7 +17,6 @@ const loginController = {
             if (!email || !password) {
                 return res.render('login', {
                     title: 'Login',
-                    error: 'Email and password are required',
                     email: email || ''
                 })
             }
@@ -32,7 +30,6 @@ const loginController = {
             if (!user) {
                 return res.render('login', {
                     title: 'Login',
-                    error: 'Invalid email or password',
                     email: email
                 })
             }
@@ -42,7 +39,6 @@ const loginController = {
             if (password != User.password) {
                 return res.render('login', {
                     title: 'Login',
-                    error: 'Invalid email or password',
                     email: email
                 })
             }
@@ -61,7 +57,6 @@ const loginController = {
             console.error('Login error:', error)
             res.render('login', {
                 title: 'Login',
-                error: 'An error occurred during login. Please try again.',
                 email: req.body.email || ''
             })
         }

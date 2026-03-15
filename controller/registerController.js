@@ -5,8 +5,6 @@ const registerController = {
         res.render('register', {
             title: 'Register',
             pageCss: 'register',
-            error: null,
-            success: null,
             formData: {}
         })
     },
@@ -19,7 +17,6 @@ const registerController = {
             if (password !== repeatPassword) {
                 return res.render('register', {
                     title: 'Register',
-                    error: 'Passwords do not match',
                     formData: { email, username } 
                 })
             }
@@ -42,7 +39,6 @@ const registerController = {
                 
                 return res.render('register', {
                     title: 'Register',
-                    error: errorMsg,
                     formData: { email, username }
                 })
             }
@@ -64,7 +60,6 @@ const registerController = {
 
             res.render('register', {
                 title: 'Register',
-                success: 'Registration successful! Please log in.',
                 formData: {}
             })
 
@@ -73,7 +68,6 @@ const registerController = {
 
             res.render('register', {
                 title: 'Register',
-                error: 'An error occurred during registration. Please try again.',
                 formData: req.body
             })
         }
