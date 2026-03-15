@@ -92,6 +92,7 @@
   margin-bottom: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  width: 100%;
 }
 
 .post-card h3 {
@@ -108,4 +109,14 @@
   color: #28a745; 
   text-decoration: none; 
   font-weight: bold; 
+}
+
+.posts-container {
+  width: 100%;
+  max-width: 800px;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 20px;
 }

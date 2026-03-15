@@ -1,11 +1,30 @@
 const User = require('../model/User')
+const Category = require('../model/Category')
+
+// Helper function to get menuItems
+async function getMenuItems() {
+    const categories = await Category.find().sort({ id: 1 })
+    const menuItems = {}
+    categories.forEach(cat => {
+        if (!menuItems[cat.parentCategory]) {
+            menuItems[cat.parentCategory] = []
+        }
+        menuItems[cat.parentCategory].push({ id: cat.id, name: cat.name })
+    })
+    return Object.keys(menuItems).map(parent => ({
+        parent: parent,
+        subcategories: menuItems[parent]
+    }))
+}
 
 const registerController = {
-    showRegisterForm: (req, res) => {
-        res.render('register', {
+    showRegisterForm: async (req, res) => {
+        const menuItems = await getMenuItems()
+        res.render('registration', {
             title: 'Register',
-            pageCss: 'register',
-            formData: {}
+            pageCss: 'registration',
+            formData: {},
+            menuItems: menuItems
         })
     },
 
@@ -15,14 +34,16 @@ const registerController = {
 
             
             if (password !== repeatPassword) {
-                return res.render('register', {
+                const menuItems = await getMenuItems()
+                return res.render('registration', {
                     title: 'Register',
-                    formData: { email, username } 
+                    formData: { email, username },
+                    menuItems: menuItems
                 })
             }
 
             
-            const existingUser = await usersCollection.findOne({
+            const existingUser = await User.findOne({
                 $or: [
                     { email: email.toLowerCase() },
                     { username: username }
@@ -36,15 +57,15 @@ const registerController = {
                 } else {
                     errorMsg += 'username'
                 }
-                
-                return res.render('register', {
+                const menuItems = await getMenuItems()
+                return res.render('registration', {
                     title: 'Register',
-                    formData: { email, username }
+                    formData: { email, username },
+                    menuItems: menuItems
                 })
             }
 
             const newUser = new User({
-                user_id: nextUserId,
                 username: username,
                 email: email.toLowerCase(),
                 password: password,
@@ -58,17 +79,15 @@ const registerController = {
                 email: newUser.email
             })
 
-            res.render('register', {
-                title: 'Register',
-                formData: {}
-            })
+            res.redirect('/login')
 
         } catch (error) {
             console.error('Registration error:', error)
-
-            res.render('register', {
+            const menuItems = await getMenuItems()
+            res.render('registration', {
                 title: 'Register',
-                formData: req.body
+                formData: req.body,
+                menuItems: menuItems
             })
         }
     }

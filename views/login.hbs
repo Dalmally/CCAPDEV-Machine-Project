@@ -1,42 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/login.css">
-    <style>
-        body {
-            background-image: url('back.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-    </style>
-</head>
-<body>
-    <div class="login-container">
-        <h2>Login</h2>
-       <form action="home" method="post">
-            <label for="email">Email:<br></label>
-            <input type="email" id="email" name="email" required>
-            <br><br>
-            <label for="password">Password:<br></label>
-            <input type="password" id="password" name="password" required>
-            <br><br>
-            <input type="checkbox" id="remember-me" name="remember-me">
-            <label for="remember-me">Remember Me</label>
-            <br><br>
-            <a href="home"><input type="submit" value="Login"></a>
-            <br><br>
-            <a href="login">I forgot my password</a> 
-            <br><br>
-            <a href ="registration">Don't have an account? Register here.</a>  
-            <br><br>
-            <a href="index">Back to Index</a>
-        </form>
-    </div>
-</body>
-</html>
+<div class="login-container">
+    <h2>Login</h2>
+   <form action="/login" method="post">
+        <label for="email">Email:<br></label>
+        <input type="email" id="email" name="email" required>
+        <br><br>
+        <label for="password">Password:<br></label>
+        <input type="password" id="password" name="password" required>
+        <br><br>
+        <input type="checkbox" id="remember-me" name="remember-me">
+        <label for="remember-me">Remember Me</label>
+        <br><br>
+        <input type="submit" value="Login">
+        <br><br>
+        <a href="/login">I forgot my password</a> 
+        <br><br>
+        <a href="/register">Don't have an account? Register here.</a>  
+        <br><br>
+        <a href="/">Back to Index</a>
+    </form>
+</div>

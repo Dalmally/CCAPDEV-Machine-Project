@@ -2,8 +2,9 @@
     {{#if post}}
     <span class="post-title" id="postTitle"><h1>{{post.title}}</h1></span>
     <div class="post-category">
-        <span class="category-label" id="category">Category: {{post.category}}</span>
+        <span class="category-label" id="category">Category: {{category}}</span>
     </div>
+    <p>By: <a href="/profile/{{post.user_id.username}}">{{post.user_id.username}}</a></p>
     <br>
     <div class="post-content">
         <p>{{post.content}}</p>
@@ -21,17 +22,17 @@
     {{/if}}
     <div class="comments-section">
         <h3>Comments</h3>
-        <form action="/addcomment" method="post" class="add-comment-form">
-            <textarea name="content" placeholder="Add a comment..." required></textarea>
-            <input type="hidden" name="postId" value="{{post.id}}">
-            <button type="submit">Add Comment</button>
-        </form>
         {{#if comments.length}}
         {{#each comments}}
-        <p>{{content}}</p>
+        <p><a href="/profile/{{user_id.username}}">{{user_id.username}}</a>: {{content}}</p>
         {{/each}}
         {{else}}
         <p>No comments yet. Start the discussion!</p>
         {{/if}}
+        <form action="/comment/add" method="post" class="add-comment-form">
+            <textarea name="content" placeholder="Add a comment..." required></textarea>
+            <input type="hidden" name="post_id" value="{{post.post_id}}">
+            <button type="submit">Add Comment</button>
+        </form>
     </div>
 </div>

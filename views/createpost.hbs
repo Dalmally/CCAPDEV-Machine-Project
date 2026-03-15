@@ -1,6 +1,6 @@
 <div class="container">
     <h1>Create a New Post</h1>
-    <form action="submit_post_handler.html" method="POST">
+    <form action="/post/create" method="POST">
         
         <div class="form-group">
             <label for="post-title">Post Title</label>
@@ -9,13 +9,11 @@
 
         <div class="form-group">
             <label for="category">Select Category</label>
-            <select id="category" name="category" required>
+            <select id="category" name="category_id" required>
                 <option value="" disabled selected>-- Choose a category --</option>
-                <option value="1">Electronic Schemas</option>
-                <option value="2">Hardware Repair & Teardown</option>
-                <option value="3">Firmware Mods</option>
-                <option value="4">Mobile Development</option>
-                <option value="5">Sideloading</option>
+                {{#each categories}}
+                <option value="{{id}}">{{name}}</option>
+                {{/each}}
             </select>
         </div>
 
