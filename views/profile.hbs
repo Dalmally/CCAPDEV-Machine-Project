@@ -13,7 +13,7 @@
         <div id="bio">
             <p>{{user.bio}}</p>
         </div>
-        <div id = badge>
+        <div id="badge">
             <p>{{user.badge}}</p>
         </div>
         {{else}}
@@ -22,16 +22,19 @@
     </div>
 </div>
 
-<div class="container">
+<div class="posts-container">
     <div id="posts">
-        {{if user.posts.length}}
+        {{#if user.posts.length}}
         {{#each user.posts}}
         <article class="post-card">
             <div class="post-meta">Posted by {{../user.username}} • {{date}}</div>
             <h3>{{title}}</h3>
             <p>{{contentPreview}}</p>
-            <a href="viewpost" class="read-more">View Full Thread →</a>
+            <a href="/post/{{post_id}}" class="read-more">View Full Thread →</a>
         </article>
         {{/each}}
+        {{else}}
+        <p>No posts yet.</p>
+        {{/if}}
     </div>
 </div>

@@ -2,9 +2,10 @@
 .header {
     position: fixed;
     top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto 30px auto;
     border: 2px solid #000000;
     border-radius: 12px;
     padding: 16px 24px;

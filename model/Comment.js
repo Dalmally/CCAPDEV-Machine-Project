@@ -26,12 +26,11 @@ const commentSchema = new mongoose.Schema({
 });
 
 // Auto-increment comment_id before saving
-commentSchema.pre('save', async function (next) {
+commentSchema.pre('save', async function () {
     if (this.isNew) {
         const lastComment = await mongoose.model('Comment').findOne().sort({ comment_id: -1 });
         this.comment_id = lastComment ? lastComment.comment_id + 1 : 1;
     }
-    next();
 });
 
 module.exports = mongoose.model('Comment', commentSchema);

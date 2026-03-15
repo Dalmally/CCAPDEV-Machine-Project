@@ -1,12 +1,31 @@
 const User = require('../model/User')
+const Category = require('../model/Category')
+
+// Helper function to get menuItems
+async function getMenuItems() {
+    const categories = await Category.find().sort({ id: 1 })
+    const menuItems = {}
+    categories.forEach(cat => {
+        if (!menuItems[cat.parentCategory]) {
+            menuItems[cat.parentCategory] = []
+        }
+        menuItems[cat.parentCategory].push({ id: cat.id, name: cat.name })
+    })
+    return Object.keys(menuItems).map(parent => ({
+        parent: parent,
+        subcategories: menuItems[parent]
+    }))
+}
 
 const loginController = {
     
-    showLoginForm: (req, res) => {
+    showLoginForm: async (req, res) => {
+        const menuItems = await getMenuItems()
         res.render('login', {
             title: 'Login',
             pageCss: 'login',
-            email: '' 
+            email: '',
+            menuItems: menuItems
         })
     },
 
@@ -15,9 +34,11 @@ const loginController = {
             const { email, password } = req.body
             
             if (!email || !password) {
+                const menuItems = await getMenuItems()
                 return res.render('login', {
                     title: 'Login',
-                    email: email || ''
+                    email: email || '',
+                    menuItems: menuItems
                 })
             }
 
@@ -28,36 +49,33 @@ const loginController = {
 
             
             if (!user) {
+                const menuItems = await getMenuItems()
                 return res.render('login', {
                     title: 'Login',
-                    email: email
+                    email: email,
+                    menuItems: menuItems
                 })
             }
 
             
-            
-            if (password != User.password) {
+            if (password != user.password) {
+                const menuItems = await getMenuItems()
                 return res.render('login', {
                     title: 'Login',
-                    email: email
+                    email: email,
+                    menuItems: menuItems
                 })
             }
 
-            res.render('dashboard', {
-                title: 'Dashboard',
-                user: {
-                    username: user.username,
-                    email: user.email,
-                    user_id: user.user_id,
-                    created_at: user.created_at
-                },
-            })
+            res.redirect('/home')
 
         } catch (error) {
             console.error('Login error:', error)
+            const menuItems = await getMenuItems()
             res.render('login', {
                 title: 'Login',
-                email: req.body.email || ''
+                email: req.body.email || '',
+                menuItems: menuItems
             })
         }
     }

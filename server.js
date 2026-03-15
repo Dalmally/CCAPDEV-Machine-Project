@@ -9,14 +9,25 @@ const setupFormHandling = require('./middleware/formhandling')
 const registerRoutes = require('./routes/registerRoutes')
 const loginRoutes = require('./routes/loginRoutes')
 const profileRoutes = require('./routes/profileRoutes')
+const postRoutes = require('./routes/postRoutes')
+const commentRoutes = require('./routes/commentRoutes')
 
 const app = express()
 app.use(express.static('public'))
 
-setupFormHandling(app)
+setupFormHandling(app);
 
 app.use(express.static(__dirname + "/public"))
-app.engine("hbs", exphbs.engine({extname: 'hbs'}))
+app.engine("hbs", exphbs.engine({
+    extname: 'hbs',
+    helpers: {
+        eq: (a, b) => a === b
+    },
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true
+    }
+}))
 app.set("view engine", "hbs")
 app.set("views", "./views")
 
@@ -26,6 +37,8 @@ app.use('/', require('./routes/main')) //Only here during development
 app.use('/', registerRoutes)
 app.use('/', loginRoutes)
 app.use('/', profileRoutes)
+app.use('/post', postRoutes)
+app.use('/comment', commentRoutes)
 
 connectToMongo((err) => {
     if (err) {
