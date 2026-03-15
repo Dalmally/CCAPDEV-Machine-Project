@@ -31,7 +31,7 @@ connectToMongo((err) => {
     if (err) {
         console.error('failed to connect to MongoDB');
     } else {
-        console.log('MongoDB connection established')
+        console.log('MongoDB connection established');
     }
 })
 
