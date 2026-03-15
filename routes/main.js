@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
 
 router.get('/home', async (req, res) => {
     try {
-        const posts = await Post.find().sort({ created_at: -1 }).populate({ path: 'user_id', model: 'User', foreignField: 'user_id', select: 'username' }).limit(10)
+        const posts = await Post.find().sort({ created_at: -1 }).populate({ path: 'user_id', model: 'User', foreignField: 'user_id', select: 'username' }).populate({ path: 'category_id', model: 'Category', foreignField: 'id', select: 'name' }).limit(10)
         const menuItems = await getMenuItems()
         res.render('home', {
             title: 'Home',
@@ -35,7 +35,7 @@ router.get('/home', async (req, res) => {
             posts: posts.map(post => ({
                 title: post.title,
                 contentPreview: post.content.substring(0, 200) + (post.content.length > 200 ? '...' : ''),
-                category: 'General', // Placeholder, can map to category name
+                category: post.category_id ? post.category_id.name : 'Unknown',
                 categoryId: post.category_id,
                 username: post.user_id ? post.user_id.username : 'Unknown',
                 post_id: post.post_id
@@ -65,19 +65,30 @@ router.get('/viewcategory', async (req, res) => {
 router.get('/createpost', async (req, res) => {
     try {
         const categories = await Category.find().sort({ id: 1 })
+        const categoryGroups = {}
+        categories.forEach(cat => {
+            if (!categoryGroups[cat.parentCategory]) {
+                categoryGroups[cat.parentCategory] = []
+            }
+            categoryGroups[cat.parentCategory].push(cat)
+        })
+        const groupedCategories = Object.keys(categoryGroups).map(parent => ({
+            parent,
+            subs: categoryGroups[parent]
+        }))
         const menuItems = await getMenuItems()
         res.render('createpost', {
             title: 'Create Post',
-            pageCss: 'main',
-            categories: categories,
+            pageCss: 'createpost',
+            categoryGroups: groupedCategories,
             menuItems: menuItems
         })
     } catch (error) {
         console.error('Error fetching categories:', error)
         res.render('createpost', {
             title: 'Create Post',
-            pageCss: 'main',
-            categories: [],
+            pageCss: 'createpost',
+            categoryGroups: [],
             menuItems: []
         })
     }

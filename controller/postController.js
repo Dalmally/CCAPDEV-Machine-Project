@@ -24,22 +24,32 @@ async function getMenuItems() {
 //Adds a post into the database
 exports.addPost = async (req, res) => {
     try {
+        console.log('addPost called');
         const { title, content, category_id } = req.body
+        console.log('req.body:', req.body);
+        console.log('category_id:', category_id, typeof category_id);
 
         // Assume current user is the first user
+        console.log('Finding current user...');
         const currentUser = await User.findOne().sort({ user_id: 1 })
+        console.log('currentUser:', currentUser);
         if (!currentUser) {
+            console.log('No users found');
             return res.status(400).send('No users found')
         }
 
+        console.log('Creating new post...');
         const newPost = new Post({
             user_id: currentUser.user_id,
-            category_id: category_id,
+            category_id: parseInt(category_id),
             title: title,
             content: content
         })
+        console.log('newPost:', newPost);
 
+        console.log('Saving post...');
         await newPost.save()
+        console.log('Post saved successfully');
 
         res.redirect('/home')
     } catch (error) {
