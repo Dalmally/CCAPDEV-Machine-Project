@@ -1,5 +1,5 @@
 const Comment = require('../model/Comment')
-const Post = require('../models/Post')
+const Post = require('../model/Post')
 
 //This will mainly add and get posts from the database
 
