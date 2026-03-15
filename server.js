@@ -11,6 +11,7 @@ const loginRoutes = require('./routes/loginRoutes')
 const profileRoutes = require('./routes/profileRoutes')
 const postRoutes = require('./routes/postRoutes')
 const commentRoutes = require('./routes/commentRoutes')
+const categoryRoutes = require('./routes/categoryRoutes')
 
 const app = express()
 app.use(express.static('public'))
@@ -39,6 +40,7 @@ app.use('/', loginRoutes)
 app.use('/', profileRoutes)
 app.use('/post', postRoutes)
 app.use('/comment', commentRoutes)
+app.use('/', categoryRoutes)
 
 connectToMongo((err) => {
     if (err) {
