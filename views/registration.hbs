@@ -11,7 +11,9 @@
         <div class="reg-top-bar"></div>
         <div class="reg-card-body">
 
-            <form action="/register" method="post">
+            <form action="/register" method="post" id="registerForm">
+
+                <div id="errorMessages" style="color: red; display: none;"></div>
 
                 <div class="reg-field-group">
                     <label class="reg-label" for="email">Email</label>
