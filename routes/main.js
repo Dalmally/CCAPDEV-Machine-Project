@@ -65,6 +65,15 @@ router.get('/home', async (req, res) => {
     }
 })
 
+router.get('/about', async (req, res) => {
+    const menuItems = await getMenuItems()
+    res.render('about', {
+        title: 'About',
+        pageCss: 'home',
+        menuItems: menuItems
+    })
+})
+
 router.get('/viewcategory', async (req, res) => {
     const menuItems = await getMenuItems()
     res.render('viewcategory', {
