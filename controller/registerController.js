@@ -81,6 +81,9 @@ const registerController = {
                 email: newUser.email
             })
 
+
+            
+
             res.redirect('/login')
 
         } catch (error) {
