@@ -29,60 +29,62 @@ const loginController = {
         })
     },
 
-    processLogin: async (req, res) => {
-        try {
-            const { email, password } = req.body
-            
-            if (!email || !password) {
-                const menuItems = await getMenuItems()
-                return res.render('login', {
-                    title: 'Login',
-                    pageCss: 'login',
-                    email: email || '',
-                    menuItems: menuItems
-                })
-            }
-
-            
-            const user = await User.findOne({ 
-                email: email.toLowerCase() 
-            })
-
-            
-            if (!user) {
-                const menuItems = await getMenuItems()
-                return res.render('login', {
-                    title: 'Login',
-                    pageCss: 'login',
-                    email: email,
-                    menuItems: menuItems
-                })
-            }
-
-            
-            if (password != user.password) {
-                const menuItems = await getMenuItems()
-                return res.render('login', {
-                    title: 'Login',
-                    pageCss: 'login',
-                    email: email,
-                    menuItems: menuItems
-                })
-            }
-
-            res.redirect('/home')
-
-        } catch (error) {
-            console.error('Login error:', error)
+processLogin: async (req, res) => {
+    try {
+        const { email, password } = req.body
+        
+        if (!email || !password) {
             const menuItems = await getMenuItems()
-            res.render('login', {
+            return res.render('login', {
                 title: 'Login',
                 pageCss: 'login',
-                email: req.body.email || '',
-                menuItems: menuItems
+                email: email || '',
+                menuItems: menuItems,
+                error: 'Please enter both email and password'
             })
         }
+
+        const user = await User.findOne({ 
+            email: email.toLowerCase() 
+        })
+
+        if (!user || password != user.password) {
+            const menuItems = await getMenuItems()
+            return res.render('login', {
+                title: 'Login',
+                pageCss: 'login',
+                email: email,
+                menuItems: menuItems,
+                error: 'Invalid email or password'
+            })
+        }
+
+        req.session.user = {
+            _id: user._id,
+            username: user.username,
+            email: user.email
+        };
+
+        req.session.save((err) => {
+            if (err) {
+                console.error('Session save error:', err);
+                return res.redirect('/login');
+            }
+            console.log('Session saved for:', user.username);
+            res.redirect('/home');
+        });
+
+    } catch (error) {
+        console.error('Login error:', error)
+        const menuItems = await getMenuItems()
+        res.render('login', {
+            title: 'Login',
+            pageCss: 'login',
+            email: req.body.email || '',
+            menuItems: menuItems
+        })
     }
+}
 }
 
 
