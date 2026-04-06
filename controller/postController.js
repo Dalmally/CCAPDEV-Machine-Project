@@ -79,21 +79,108 @@ exports.getPostById = async (req, res) => {
         const comments = await Comment.find({ post_id: postId }).sort({ created_at: 1 }).populate({ path: 'user_id', model: 'User', foreignField: 'user_id', select: 'username' }).lean()
         const category = await Category.findOne({ id: post.category_id })
         let menuItems = []
+        let isAdmin = !!req.session.admin
         try {
             menuItems = await getMenuItems()
         } catch (error) {
             console.error('Error fetching menuItems:', error)
         }
+        
         res.render('viewpost', {
             title: post.title,
             pageCss: 'viewpost',
             post: post,
             comments: comments,
             category: category ? category.name : 'Unknown',
-            menuItems: menuItems
+            menuItems: menuItems,
+            isAdmin: isAdmin
         })
     } catch (error) {
         console.error('Error getting post:', error)
         res.status(500).send('Error fetching post')
+    }
+}
+
+exports.upvotePost = async (req, res) => {
+    try {
+        const { id } = req.params
+        const postId = parseInt(id)
+        const post = await Post.findOneAndUpdate({ post_id: postId }, { $inc: { upvotes: 1 } }, { new: true })
+        if (!post) {
+            return res.status(404).send('Post not found')
+        }
+
+        // Check total upvotes for the user
+        const userPosts = await Post.find({ user_id: post.user_id })
+        const totalUpvotes = userPosts.reduce((sum, p) => sum + p.upvotes, 0)
+        let newBadge = ''
+        if (totalUpvotes >= 10) {
+            newBadge = 'Technician'
+        } else if (totalUpvotes >= 5) {
+            newBadge = 'Tinkerer'
+        }
+        if (newBadge) {
+            await User.findOneAndUpdate({ user_id: post.user_id }, { badge: newBadge })
+        }
+
+        res.redirect(`/post/${postId}`)
+    } catch (error) {
+        console.error('Error upvoting post:', error)
+        res.status(500).send('Error upvoting post')
+    }
+}
+
+exports.downvotePost = async (req, res) => {
+    try {
+        const { id } = req.params
+        const postId = parseInt(id)
+        const post = await Post.findOneAndUpdate({ post_id: postId }, { $inc: { downvotes: 1 } }, { new: true })
+        if (!post) {
+            return res.status(404).send('Post not found')
+        }
+        res.redirect(`/post/${postId}`)
+    } catch (error) {
+        console.error('Error downvoting post:', error)
+        res.status(500).send('Error downvoting post')
+    }
+}
+
+exports.deletePost = async (req, res) => {
+    try {
+        const { id } = req.params
+        const postId = parseInt(id)
+        
+        // Delete all comments associated with the post
+        await Comment.deleteMany({ post_id: postId })
+        
+        // Delete the post
+        const post = await Post.findOneAndDelete({ post_id: postId })
+        if (!post) {
+            return res.status(404).send('Post not found')
+        }
+        
+        res.redirect('/home')
+    } catch (error) {
+        console.error('Error deleting post:', error)
+        res.status(500).send('Error deleting post')
+    }
+}
+
+exports.deleteComment = async (req, res) => {
+    try {
+        const { postId, commentId } = req.params
+        const postIdInt = parseInt(postId)
+        const commentIdInt = parseInt(commentId)
+        
+        // Delete the comment
+        const comment = await Comment.findOneAndDelete({ comment_id: commentIdInt })
+        if (!comment) {
+            return res.status(404).send('Comment not found')
+        }
+        
+        res.redirect(`/post/${postIdInt}`)
+    } catch (error) {
+        console.error('Error deleting comment:', error)
+        res.status(500).send('Error deleting comment')
     }
 }

@@ -1,4 +1,4 @@
-body { font-family: monospace; background-color: #f4f7f6; margin: 0; padding: 100px; display: flex; align-items: center; justify-content: center;}
+body { font-family: monospace; background-color: #f4f7f6; margin: 0; padding: 40px 20px;}
 .container { max-width: 700px; width: 700px ; margin: 40px; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 h1 { color: #333; border-bottom: 2px solid #eee; padding-bottom: 10px; }
 

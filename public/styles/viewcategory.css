@@ -1,4 +1,4 @@
-body { font-family: monospace; margin: 0; display: flex; height: 100vh; background: #f0f2f5; }
+body { font-family: monospace; margin: 0; background: #f0f2f5; }
 
 /* Main Feed Styling */
 .feed-container {

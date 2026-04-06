@@ -5,10 +5,22 @@ const adminSchema = new mongoose.Schema({
         type: Number,
         unique: true
     },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        maxlength: 100,
+        trim: true,
+        lowercase: true
+    },
+    password: {
+        type: String,
+        required: true,
+        maxlength: 255
+    },
     // References the user that has been granted admin privileges
     user_id: {
         type: Number,
-        required: true,
         unique: true,
         ref: 'User'
     },
