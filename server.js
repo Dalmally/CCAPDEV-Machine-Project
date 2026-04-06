@@ -1,6 +1,6 @@
 const express = require('express');
 const session = require('express-session'); 
-const MongoStore = require('connect-mongo');
+const { MongoStore } = require('connect-mongo');
 const exphbs = require('express-handlebars');
 const path = require('path');
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
