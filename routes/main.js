@@ -44,6 +44,7 @@ router.get('/home', async (req, res) => {
         res.render('home', {
             title: 'Home',
             pageCss: 'home',
+            showHomeTitle: true,
             posts: posts.map(post => ({
                 title: post.title,
                 contentPreview: post.content.substring(0, 200) + (post.content.length > 200 ? '...' : ''),
@@ -69,7 +70,7 @@ router.get('/about', async (req, res) => {
     const menuItems = await getMenuItems()
     res.render('about', {
         title: 'About',
-        pageCss: 'home',
+        pageCss: 'about',
         menuItems: menuItems
     })
 })

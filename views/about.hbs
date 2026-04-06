@@ -1,48 +1,46 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>About</title>
-    <link rel="stylesheet" href="/styles/main.css">
-    <link rel="stylesheet" href="/styles/categories.css">
-</head>
-<body>
-    {{> header}}
-
-    {{> categories}}
-    <div class="container">
+<div class="about-container">
+    <div class="about-content">
         <h1>Tech Mod Forum</h1>
         <p>Welcome to Tech Mod Forum, a web application built for tech enthusiasts and hobbyists. This platform allows users to share posts, discuss categories, and engage in community discussions.</p>
-        <br>
-        <h1>Project Information</h1>
-        <p>This is the Machine Project for CCAPDEV of DLSU. A web-forum made for anything tech-related.</p>
-        <br>
-        <h1>Repository: <a href="https://github.com/Dalmally/CCAPDEV-Machine-Project" target="_blank">GitHub</a></h1>
-        
-        <h1>NPM Packages and Third-Party Libraries</h1>
-        <p>The following NPM packages are used in this project:</p>
-        <br>
-        <ul>
-            <li><strong>connect-mongo</strong></li>
-            <li><strong>dotenv</strong></li>
-            <li><strong>express</strong></li>
-            <li><strong>express-handlebars</strong></li>
-            <li><strong>mongodb</strong></li>
-            <li><strong>mongoose</strong></li>
-            <li><strong>nodemon</strong></li>
-        </ul>
-        <br>
-        <p>Third-Party Libraries Used</p>
-        <ul>
-            <li>Node.js</li>
-            <li>Express.js</li>
-            <li>MongoDB</li>
-            <li>Mongoose</li>
-            <li>Handlebars (Express Handlebars)</li>
-            <li>HTML5, CSS3, JavaScript</li>
-        </ul>
-    </div>
 
-    <script src="/scripts/categories.js"></script>
-</body>
-</html>
+        <h2>Project Information</h2>
+        <p>This is the Machine Project for CCAPDEV of DLSU. A web-forum made for anything tech-related.</p>
+
+        <h2>Repository</h2>
+        <p><a href="https://github.com/Dalmally/CCAPDEV-Machine-Project" target="_blank" class="about-link">View on GitHub →</a></p>
+
+        <h2>NPM Packages and Technologies</h2>
+        <p>The following technologies and packages are used in this project:</p>
+        
+        <div class="tech-list">
+            <div class="tech-column">
+                <h3>NPM Packages</h3>
+                <ul>
+                    <li>bcrypt</li>
+                    <li>connect-mongo</li>
+                    <li>dotenv</li>
+                    <li>express</li>
+                    <li>express-handlebars</li>
+                    <li>express-session</li>
+                    <li>mongodb</li>
+                    <li>mongoose</li>
+                    <li>multer</li>
+                    <li>nodemon</li>
+                </ul>
+            </div>
+            <div class="tech-column">
+                <h3>Core Technologies</h3>
+                <ul>
+                    <li>Node.js</li>
+                    <li>Express.js</li>
+                    <li>MongoDB</li>
+                    <li>Mongoose</li>
+                    <li>Handlebars</li>
+                    <li>HTML5</li>
+                    <li>CSS3</li>
+                    <li>JavaScript</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

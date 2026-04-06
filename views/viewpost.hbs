@@ -10,16 +10,24 @@
         <p>{{post.content}}</p>
     </div>
     <div class="post-actions">
-        <button class="upvote">Upvote <span class="icon">👍</span></button>
-        <button class="downvote">Downvote <span class="icon">👎</span></button>
-        <button class="comment">Comment <span class="icon">💬</span></button>
+        <form action="/post/{{post.post_id}}/upvote" method="post" class="action-form">
+            <button type="submit" class="upvote">Upvote ({{post.upvotes}}) <span class="icon">👍</span></button>
+        </form>
+        <form action="/post/{{post.post_id}}/downvote" method="post" class="action-form">
+            <button type="submit" class="downvote">Downvote ({{post.downvotes}}) <span class="icon">👎</span></button>
+        </form>
+        {{#if isAdmin}}
+        <form action="/post/{{post.post_id}}/delete" method="post" class="action-form">
+            <button type="submit" class="delete-btn">Delete Post</button>
+        </form>
+        {{/if}}
     </div>
 
-{{#unless user}}
+{{#unless user}}{{#unless admin}}
     <div class="post-footer">
         <a href="/login">Login to vote, comment, or post</a>
     </div>
-{{/unless}}
+{{/unless}}{{/unless}}
 
     {{else}}
     <p>Post not found.</p>
@@ -34,6 +42,11 @@
                     <a href="/profile/{{user_id.username}}" class="comment-author">@{{user_id.username}}</a>
                     <span class="comment-dot">·</span>
                     <span class="comment-date">{{created_at}}</span>
+                    {{#if ../isAdmin}}
+                    <form action="/post/{{../post.post_id}}/comment/{{comment_id}}/delete" method="post" style="display: inline; margin-left: 10px;">
+                        <button type="submit" class="delete-comment-btn">Delete</button>
+                    </form>
+                    {{/if}}
                 </div>
                 <p class="comment-body">{{content}}</p>
             </div>

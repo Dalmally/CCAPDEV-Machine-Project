@@ -1,4 +1,5 @@
 const User = require('../model/User');
+const Admin = require('../model/Admin');
 const Category = require('../model/Category');
 const bcrypt = require('bcrypt');
 
@@ -45,11 +46,45 @@ const loginController = {
                 });
             }
 
-            // 2. Find User
+            // 2. Check if it's an admin login (email ends with @techmod.forum)
+            if (email.toLowerCase().endsWith('@techmod.forum')) {
+                // Try to find admin by email
+                const admin = await Admin.findOne({ email: email.toLowerCase() });
+                const isPasswordValid = admin && await bcrypt.compare(password, admin.password);
+
+                if (!admin || !isPasswordValid) {
+                    return res.render('login', {
+                        title: 'Login',
+                        pageCss: 'login',
+                        email: email,
+                        menuItems: menuItems,
+                        error: 'Invalid admin credentials',
+                        showPopup: true
+                    });
+                }
+
+                // Handle Admin Session
+                req.session.admin = {
+                    _id: admin._id,
+                    email: admin.email,
+                    role_level: admin.role_level
+                };
+
+                req.session.save((err) => {
+                    if (err) {
+                        console.error('Session save error:', err);
+                        return res.redirect('/login');
+                    }
+                    res.redirect('/home');
+                });
+                return;
+            }
+
+            // 3. Find User (regular login)
             const user = await User.findOne({ email: email.toLowerCase() });
             const isPasswordValid = user && await bcrypt.compare(password, user.password);
 
-            // 3. Check User and Password
+            // 4. Check User and Password
             if (!user || !isPasswordValid) {
                 return res.render('login', {
                     title: 'Login',
@@ -61,7 +96,7 @@ const loginController = {
                 });
             }
 
-            // 4. Handle Session
+            // 5. Handle User Session
             req.session.user = {
                 _id: user._id,
                 username: user.username,

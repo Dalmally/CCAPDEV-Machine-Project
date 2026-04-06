@@ -35,6 +35,7 @@ app.use(session({
 app.use(async (req, res, next) => {
     // Pass user session to all templates
     res.locals.user = req.session.user || null;
+    res.locals.admin = req.session.admin || null;
 
     try {
         const Category = require('./model/Category'); 
