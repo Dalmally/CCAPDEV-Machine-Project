@@ -16,7 +16,12 @@
         <form action="/post/{{post.post_id}}/downvote" method="post" class="action-form">
             <button type="submit" class="downvote">Downvote ({{post.downvotes}}) <span class="icon">👎</span></button>
         </form>
-        {{#if isAdmin}}
+        {{#if isAdmin}}{{#unless isOwner}}
+        <form action="/post/{{post.post_id}}/delete" method="post" class="action-form">
+            <button type="submit" class="delete-btn">Delete Post</button>
+        </form>
+        {{/unless}}{{/if}}
+        {{#if isOwner}}
         <form action="/post/{{post.post_id}}/delete" method="post" class="action-form">
             <button type="submit" class="delete-btn">Delete Post</button>
         </form>
