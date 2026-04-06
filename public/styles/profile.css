@@ -120,3 +120,23 @@
   overflow: hidden;
   padding: 20px;
 }
+
+.edit-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #f0f0f0;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+}
+
+.edit-btn:hover {
+    background-color: #e0e0e0;
+}
+
+#username-row {
+    margin-bottom: 10px;
+}

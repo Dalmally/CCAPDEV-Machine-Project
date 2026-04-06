@@ -30,6 +30,7 @@ exports.addComment = async (req, res) => {
         console.log('Saving comment...');
         await newComment.save()
         console.log('Comment saved successfully');
+        
 
         res.redirect(`/post/${postId}`)
     } catch (error) {

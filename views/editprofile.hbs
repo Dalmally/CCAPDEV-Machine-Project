@@ -1,132 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/editprofile.css">
-    <link rel="stylesheet" href="styles/header.css">
-    <link rel="stylesheet" href="styles/categories.css">
-    <title>Edit Profile</title>
-</head>
-<body>
-    <!--Sidebar-->
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
-    <aside class="sidebar" id="sidebar">
-        <h2 class="sidebar-logo">Categories</h2>
-        <button class="close-sidebar" id="closeSidebarBtn">✕</button>
-
-        <nav class="sidebar-nav">
-            <ul class="menu">
-                <li class="menu-category">
-                    Electronic Schemas
-                    <ul>
-                        <li><a href="viewcategory">Android</a></li>
-                        <li><a href="viewcategory">iPhone</a></li>
-                        <li><a href="viewcategory">iPad</a></li>
-                        <li><a href="viewcategory">Xbox</a></li>
-                        <li><a href="viewcategory">Playstation</a></li>
-                    </ul>
-                </li>
-
-            <li class="menu-category">
-                Hardware Repair & Teardown
-                <ul>
-                    <li><a href="viewcategory">Console</a></li>
-                    <li><a href="viewcategory">Android</a></li>
-                    <li><a href="viewcategory">Apple</a></li>
-                    <li><a href="viewcategory">Nintendo</a></li>
-                    <li><a href="viewcategory">General Electronics</a></li>
-                </ul>
-            </li>
-
-            <li class="menu-category">
-                Firmware Mods
-                <ul>
-                    <li><a href="viewcategory">Console</a></li>
-                    <li><a href="viewcategory">Android</a></li>
-                    <li><a href="viewcategory">Nintendo</a></li>
-                    <li><a href="viewcategory">General Electronics</a></li>
-                </ul>
-            </li>
-
-            <li class="menu-category">
-                Mobile Development
-                <ul>
-                    <li><a href="viewcategory">Android</a></li>
-                    <li><a href="viewcategory">iOS / iPadOS</a></li>
-                </ul>
-            </li>
-
-            <li class="menu-category">
-                Sideloading
-                <ul>
-                    <li><a href="viewcategory">iOS</a></li>
-                    <li><a href="viewcategory">iPadOS</a></li>
-                </ul>
-            </li>
-
-            </ul>
-        </nav>
-    </aside>
-
-    <!--Header-->
-
-    <header class="header">
-        <a href="index" class="logo">FORUM</a>
-
-        {{nav}}
-
-        <div class="auth-buttons">
-            <a href="login" class="login-btn">Log in</a>
-            <a href="registration" class="register-btn">Register</a>
+<div class="container">
+    {{!-- Form for updating Profile --}}
+    <form action="/profile/edit" id="profileform" method="POST" enctype="multipart/form-data">
+        <div id="header">
+            <h2>Edit Profile</h2>
         </div>
-    </header>
 
-    <script src="scripts/categories.js"></script>
-    <div class="container">
-        <form action="home" id="profileform" method="GET">
-            <div id="errorMessages" style="color: red; display: none;"></div>
-            
-            <div id="header">
-                <h2>Edit Profile</h2>
-            </div>
-
-            <br>
-            
-            <div id="avatarsection">
-                <input type="file" id="avatarInput" accept="image/*" hidden>
-                
-                <div class="avatar" onclick="document.getElementById(avatarInput).click()">
-                    <img src="public/default-avatar.jpg" alt="Current Avatar" class="avatar">
-                    <div class="overlay">
-                        <span class="overlay-text">Change Avatar</span>
-                    </div>
+        <div id="avatarsection">
+            {{!-- Avatar upload --}}
+            <input type="file" name="avatar" id="avatarInput" accept="image/*" hidden>
+            <div class="avatar-container" onclick="document.getElementById('avatarInput').click()">
+                <img src="{{user.avatarUrl}}" alt="Current Avatar" class="avatar">
+                <div class="overlay">
+                    <span class="overlay-text">Change Avatar</span>
                 </div>
             </div>
+        </div>
 
-            <br><br>
+        <div class="details">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" value="{{user.username}}" placeholder="Enter new username">
+        </div>
 
-            <div id="details">
-                <label for="username">Username</label>
-                <!--Placeholders will be replaced with the -->
-                <input type="text" id="username" placeholder="Enter new username">
-            </div>
-            <br><br>
+        <div class="details">
+            <label for="bio">Bio</label>
+            <textarea name="bio" id="bio" placeholder="Tell us about yourself...">{{user.bio}}</textarea>
+        </div>
 
-            <div id="details">
-                <label for="bio">Bio</label>
-                <input type="text" id="bio" placeholder="Enter new bio">
-            </div>
+        <div id="actions">
+            <a href="/profile" class="button cancel-btn">Cancel</a>
+            <button type="submit" class="button save-btn">Save Changes</button>
+        </div>
+    </form>
 
-            <br><br>
-            
-            <div id="actions">
-                <button type="button" class="button">Cancel</button>
-                <button type="submit" class="button">Save Changes</button>
-            </div>
-        </form>
+    <hr>
+
+    {{!-- View Own Posts Section --}}
+    <div class="user-posts-section">
+        <h3>My Posts</h3>
+        <div class="posts-grid">
+            {{#if posts.length}}
+                {{#each posts}}
+                    <div class="post-card">
+                        <h4><a href="/post/{{this.post_id}}">{{this.title}}</a></h4>
+                        <p>{{this.contentPreview}}</p>
+                        <span class="post-date">{{this.date}}</span>
+                    </div>
+                {{/each}}
+            {{else}}
+                <p>You haven't posted anything yet.</p>
+            {{/if}}
+        </div>
     </div>
-</body>
-<script src="scripts/validation.js"></script>
-</html>
+</div>

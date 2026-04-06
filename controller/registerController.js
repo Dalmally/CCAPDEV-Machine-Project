@@ -1,7 +1,7 @@
 const User = require('../model/User')
 const Category = require('../model/Category')
 
-// Helper function to get menuItems
+// Helper function to get menuItems for the sidebar
 async function getMenuItems() {
     const categories = await Category.find().sort({ id: 1 })
     const menuItems = {}
@@ -29,21 +29,24 @@ const registerController = {
     },
 
     processRegister: async (req, res) => {
+        let menuItems;
         try {
             const { email, username, password, 'repeat-password': repeatPassword } = req.body
+            menuItems = await getMenuItems()
 
-            
+            // 1. Check for Password Mismatch
             if (password !== repeatPassword) {
-                const menuItems = await getMenuItems()
                 return res.render('registration', {
                     title: 'Register',
                     pageCss: 'registration',
                     formData: { email, username },
-                    menuItems: menuItems
+                    menuItems: menuItems,
+                    error: 'Passwords do not match!',
+                    showPopup: true
                 })
             }
 
-            
+            // 2. Check if User/Email already exists 
             const existingUser = await User.findOne({
                 $or: [
                     { email: email.toLowerCase() },
@@ -52,48 +55,43 @@ const registerController = {
             })
 
             if (existingUser) {
-                let errorMsg = 'User already exists with this '
-                if (existingUser.email === email.toLowerCase()) {
-                    errorMsg += 'email'
-                } else {
-                    errorMsg += 'username'
-                }
-                const menuItems = await getMenuItems()
+                const errorMsg = existingUser.email === email.toLowerCase() 
+                    ? 'This email is already registered.' 
+                    : 'This username is already taken.';
+                
                 return res.render('registration', {
                     title: 'Register',
                     pageCss: 'registration',
                     formData: { email, username },
-                    menuItems: menuItems
+                    menuItems: menuItems,
+                    error: errorMsg,
+                    showPopup: true
                 })
             }
 
+            // 3. Create and Save User
             const newUser = new User({
                 username: username,
                 email: email.toLowerCase(),
-                password: password,
+                password: password, 
             })
 
             await newUser.save()
 
-            console.log('New user registered:', {
-                user_id: newUser.user_id,
-                username: newUser.username,
-                email: newUser.email
-            })
-
-
-            
-
-            res.redirect('/login')
+            // 4. Redirect to login with success flag
+            res.redirect('/login?success=true')
 
         } catch (error) {
             console.error('Registration error:', error)
-            const menuItems = await getMenuItems()
+            if (!menuItems) menuItems = await getMenuItems()
+            
             res.render('registration', {
                 title: 'Register',
                 pageCss: 'registration',
                 formData: req.body,
-                menuItems: menuItems
+                menuItems: menuItems,
+                error: 'An unexpected database error occurred.',
+                showPopup: true
             })
         }
     }

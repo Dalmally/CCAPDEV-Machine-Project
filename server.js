@@ -63,7 +63,8 @@ setupFormHandling(app);
 app.engine("hbs", exphbs.engine({
     extname: 'hbs',
     helpers: {
-        eq: (a, b) => a === b
+        eq: (a, b) => a === b,
+        or: (a, b) => a || b 
     },
     runtimeOptions: {
         allowProtoPropertiesByDefault: true,
@@ -74,12 +75,12 @@ app.set("view engine", "hbs");
 app.set("views", "./views");
 
 // 5. Routes
+app.use('/post', postRoutes);
+app.use('/comment', commentRoutes);
+app.use('/profile', profileRoutes); 
 app.use('/', require('./routes/main'));
 app.use('/', registerRoutes);
 app.use('/', loginRoutes);
-app.use('/', profileRoutes);
-app.use('/post', postRoutes);
-app.use('/comment', commentRoutes);
 app.use('/', categoryRoutes);
 
 // 6. Server Start

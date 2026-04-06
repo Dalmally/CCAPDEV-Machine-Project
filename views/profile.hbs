@@ -37,4 +37,26 @@
         <p>No posts yet.</p>
         {{/if}}
     </div>
+
+<div id="details-section">
+    {{#if user}}
+    <div id="username-row" style="display: flex; align-items: center; gap: 20px;">
+        <h2>{{user.username}}</h2>
+        
+        {{#if isOwnProfile}}
+            <a href="/profile/edit" class="edit-btn">Edit Profile</a>
+        {{/if}}
+    </div>
+
+    <div id="bio">
+        <p>{{user.bio}}</p>
+    </div>
+    <div id="badge">
+        <p>{{user.badge}}</p>
+    </div>
+    {{else}}
+    <p>User not found.</p>
+    {{/if}}
+</div>
+
 </div>

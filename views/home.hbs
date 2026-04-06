@@ -1,14 +1,57 @@
-<div class="main-content">
-    <h1>Welcome to The Tech Mod Forum!</h1>
-    {{#if posts.length}}
-{{#each posts}}
-<div class="post">
-    <p>Category: {{category}}</p>
-    <a href="/post/{{post_id}}" class="post-title"><h2>{{title}}</h2></a>
-    <p>{{contentPreview}}</p>
-</div>
-<br>
+<section class="hero-banner">
+    <div class="container">
+        {{#if user}}
+            <div class="user-welcome">
+                <h1>Hello, <span>{{user.username}}</span>!</h1>
+                <p>Logged in as: <strong>{{user.email}}</strong></p>
+                <div class="hero-actions">
+                    <a href="/profile" class="btn btn-primary">Edit My Profile</a>
+                    <a href="/logout" class="btn btn-outline">Logout</a>
+                </div>
+            </div>
+        {{else}}
+            <div class="guest-welcome">
+                <h1>Welcome to The Tech Mod Forum!</h1>
+                <p>Join our community of hardware and software enthusiasts.</p>
+                <div class="hero-actions">
+                    <a href="/login" class="btn btn-primary">Login</a>
+                    <a href="/register" class="btn btn-outline">Register</a>
+                </div>
+            </div>
+        {{/if}}
+    </div>
+</section>
+
+<main class="container main-feed">
+    <div class="section-header">
+        <h1>Latest Discussions</h1>
+        <a href="/createpost" class="btn btn-small">+ Create Post</a>
+    </div>
+
+    <div class="post-grid">
+        {{#if posts.length}}
+            {{#each posts}}
+<article class="post-card">
+    <div class="post-header-meta">
+        <img src="{{or this.authorAvatar '/default-avatar.jpg'}}" class="mini-avatar">
+        <span class="category-tag">{{category}}</span>
+    </div>
+    
+    <a href="/post/{{post_id}}" class="post-link">
+        <h2>{{title}}</h2>
+    </a>
+    
+    <p class="post-preview">{{contentPreview}}</p>
+    
+    <div class="post-footer">
+        <a href="/post/{{post_id}}" class="read-more">Read More →</a>
+    </div>
+</article>
 {{/each}}
-{{else}}
-<p>No posts yet!</p>
-{{/if}}
+        {{else}}
+            <div class="no-posts">
+                <p>No posts yet! Be the first to start a conversation.</p>
+            </div>
+        {{/if}}
+    </div>
+</main>

@@ -61,4 +61,30 @@
 
     <p class="reg-bottom-note">Tech Mod Forum © 2026</p>
 
+{{#if showPopup}}
+<div id="errorPopup" class="popup-overlay">
+    <div class="popup-box">
+        <h2>Registration Error</h2>
+        <p>{{error}}</p>
+        <button onclick="closePopup()">OK</button>
+    </div>
+</div>
+{{/if}}
+
+<script>
+    function closePopup() {
+        const popup = document.getElementById('errorPopup');
+        if (popup) {
+            popup.style.display = 'none';
+        }
+    }
+
+    window.onload = function () {
+        const popup = document.getElementById('errorPopup');
+        if (popup) {
+            popup.style.display = 'flex';
+        }
+    }
+</script>
+
 </div>

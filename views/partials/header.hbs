@@ -3,12 +3,19 @@
 
     <nav class="nav-links">
         <button class="nav-btn categories-btn" id="categoriesBtn">Categories</button>
-        <a href="/profile/RockyB123" class="nav-btn">Profile</a>
-        <a href="/createpost" class="nav-btn">Create Post</a>
+        
+        {{#if user}}
+            <a href="/profile/{{user.username}}" class="nav-btn">My Profile ({{user.username}})</a>
+            <a href="/createpost" class="nav-btn">Create Post</a>
+        {{/if}}
     </nav>
 
     <div class="auth-buttons">
-        <a href="/login" class="login-btn">Log in</a>
-        <a href="/register" class="register-btn">Register</a>
+        {{#if user}}
+            <a href="/logout" class="login-btn">Log out</a>
+        {{else}}
+            <a href="/login" class="login-btn">Log in</a>
+            <a href="/register" class="register-btn">Register</a>
+        {{/if}}
     </div>
 </header>

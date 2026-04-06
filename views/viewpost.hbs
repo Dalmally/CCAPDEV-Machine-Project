@@ -14,9 +14,13 @@
         <button class="downvote">Downvote <span class="icon">👎</span></button>
         <button class="comment">Comment <span class="icon">💬</span></button>
     </div>
+
+{{#unless user}}
     <div class="post-footer">
-        <a href="login">Login to vote, comment, or post</a>
+        <a href="/login">Login to vote, comment, or post</a>
     </div>
+{{/unless}}
+
     {{else}}
     <p>Post not found.</p>
     {{/if}}

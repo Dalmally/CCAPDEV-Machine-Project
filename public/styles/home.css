@@ -166,3 +166,64 @@ h2{
   transform: translateX(4px);
 }
 
+/* Container for the Discussion Cards */
+.post-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 20px;
+}
+
+/* Updated Blue Rectangle Card */
+.post-card {
+    background-color: #e3f2fd; /* Light tech blue */
+    border: 1px solid #90caf9; /* Softer blue border */
+    border-radius: 12px;       /* Modern rounded corners */
+    padding: 24px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(13, 71, 161, 0.1);
+}
+
+/* Fixing the Profile Image Size */
+.mini-avatar {
+    width: 32px;  /* Smaller, more proportional size */
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    border: 1px solid #fff;
+}
+
+/* Typography Enhancements */
+.post-card h2 {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 1.25rem; /* Balanced title size */
+    font-weight: 700;
+    color: #1565c0;    /* Deep blue title */
+    margin: 8px 0;
+    line-height: 1.4;
+}
+
+.post-preview {
+    font-size: 0.95rem;
+    color: #455a64;    /* Slate gray for better readability */
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+/* Category Tag Fix */
+.category-tag {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    padding: 4px 10px;
+    background-color: #1976d2;
+    color: white;
+    border-radius: 4px;
+    text-transform: uppercase;
+}

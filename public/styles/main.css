@@ -18,3 +18,95 @@ body {
   flex-direction: column;
   gap: 10px;
 }
+
+/* Layout Containers */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Banner */
+.hero-banner {
+    background: #f8f9fa;
+    padding: 40px 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 30px;
+    border-radius: 8px;
+}
+
+.hero-banner h1 span {
+    color: #007bff;
+}
+
+.hero-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-primary { background: #007bff; color: white; }
+.btn-outline { border: 2px solid #007bff; color: #007bff; }
+.btn-primary:hover { background: #0056b3; }
+
+/* Post Cards */
+.post-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.post-card {
+    background: white;
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+
+.post-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.category-tag {
+    background: #e9ecef;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.post-link {
+    text-decoration: none;
+    color: #333;
+}
+
+.post-link h2 {
+    margin: 10px 0;
+    font-size: 1.5rem;
+}
+
+.post-preview {
+    color: #666;
+    line-height: 1.5;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 15px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}

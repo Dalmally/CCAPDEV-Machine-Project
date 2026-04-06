@@ -20,3 +20,11 @@
         <a href="/">Back to Index</a>
     </form>
 </div>
+
+{{#if showPopup}}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        alert("{{error}}");
+    });
+</script>
+{{/if}}
