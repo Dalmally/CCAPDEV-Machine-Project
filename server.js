@@ -1,8 +1,9 @@
 const express = require('express');
 const session = require('express-session'); 
+const MongoStore = require('connect-mongo');
 const exphbs = require('express-handlebars');
 const path = require('path');
-require('dotenv').config();
+if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 const { connectToMongo } = require('./model/conn');
 
 // Routing imports
@@ -23,9 +24,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // 2. Session Setup 
 app.use(session({
-    secret: 'forum-secret-key',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
     cookie: { maxAge: 1000 * 60 * 60 } // 1 hour
 }));
 
