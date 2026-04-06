@@ -3,6 +3,7 @@
 
     <nav class="nav-links">
         <button class="nav-btn categories-btn" id="categoriesBtn">Categories</button>
+        <a href="/about" class="nav-btn">About</a>
         {{#if user}}
             <a href="/profile/{{user.username}}" class="nav-btn">My Profile ({{user.username}})</a>
             <a href="/createpost" class="nav-btn">Create Post</a>

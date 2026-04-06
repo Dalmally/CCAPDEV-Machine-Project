@@ -70,7 +70,7 @@ router.get('/about', async (req, res) => {
     const menuItems = await getMenuItems()
     res.render('about', {
         title: 'About',
-        pageCss: 'home',
+        pageCss: 'about',
         menuItems: menuItems
     })
 })
