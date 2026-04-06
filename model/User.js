@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const SALT_ROUNDS = 10;
 
 const userSchema = new mongoose.Schema({
     user_id: {
@@ -45,12 +47,20 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-// Auto-increment user_id before saving
+// Auto-hash password and auto-increment user_id before saving
 userSchema.pre('save', async function () {
+    if (this.isModified('password')) {
+        this.password = await bcrypt.hash(this.password, SALT_ROUNDS);
+    }
+
     if (this.isNew) {
         const lastUser = await mongoose.model('User').findOne().sort({ user_id: -1 });
         this.user_id = lastUser ? lastUser.user_id + 1 : 1;
     }
 });
+
+userSchema.methods.comparePassword = async function (candidatePassword) {
+    return bcrypt.compare(candidatePassword, this.password);
+};
 
 module.exports = mongoose.model('User', userSchema);

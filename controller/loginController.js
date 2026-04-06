@@ -1,5 +1,6 @@
 const User = require('../model/User');
 const Category = require('../model/Category');
+const bcrypt = require('bcrypt');
 
 async function getMenuItems() {
     const categories = await Category.find().sort({ id: 1 });
@@ -46,9 +47,10 @@ const loginController = {
 
             // 2. Find User
             const user = await User.findOne({ email: email.toLowerCase() });
+            const isPasswordValid = user && await bcrypt.compare(password, user.password);
 
             // 3. Check User and Password
-            if (!user || password != user.password) {
+            if (!user || !isPasswordValid) {
                 return res.render('login', {
                     title: 'Login',
                     pageCss: 'login',
