@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="/styles/{{pageCss}}.css">
 </head>
 <body>
+    {{#if showHomeTitle}}
+    <section class="home-title-banner">
+        <h1>Tech Mod Forum</h1>
+    </section>
+    {{/if}}
+
     {{> header}}
 
     {{> categories}}

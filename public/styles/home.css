@@ -33,6 +33,11 @@ h2{
   min-width: 0;
 }
 
+/* Add spacing below top bar on home page */
+.main-feed {
+  margin-top: 30px;
+}
+
 /* SIDEBAR */
 .sidebar {
   width: 300px;
@@ -174,19 +179,19 @@ h2{
     margin-top: 20px;
 }
 
-/* Updated Blue Rectangle Card */
+/* Post cards with white background and green edges */
 .post-card {
-    background-color: #e3f2fd; /* Light tech blue */
-    border: 1px solid #90caf9; /* Softer blue border */
-    border-radius: 12px;       /* Modern rounded corners */
+    background-color: #ffffff;
+    border: 1px solid #0c6543;
+    border-radius: 14px;
     padding: 24px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 10px rgba(12, 101, 67, 0.08);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .post-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(13, 71, 161, 0.1);
+    box-shadow: 0 8px 20px rgba(12, 101, 67, 0.12);
 }
 
 /* Fixing the Profile Image Size */
@@ -204,7 +209,7 @@ h2{
     font-family: 'Inter', -apple-system, sans-serif;
     font-size: 1.25rem; /* Balanced title size */
     font-weight: 700;
-    color: #1565c0;    /* Deep blue title */
+    color: #0c6543;    /* Deep green title */
     margin: 8px 0;
     line-height: 1.4;
 }
@@ -222,7 +227,7 @@ h2{
     font-weight: 800;
     letter-spacing: 0.05em;
     padding: 4px 10px;
-    background-color: #1976d2;
+    background-color: #0c6543;
     color: white;
     border-radius: 4px;
     text-transform: uppercase;
