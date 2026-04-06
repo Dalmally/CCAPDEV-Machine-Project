@@ -80,6 +80,13 @@ exports.getPostById = async (req, res) => {
         const category = await Category.findOne({ id: post.category_id })
         let menuItems = []
         let isAdmin = !!req.session.admin
+        let isOwner = false
+        
+        // Check if current user is the post owner
+        if (req.session.user && req.session.user.username === post.user_id.username) {
+            isOwner = true
+        }
+        
         try {
             menuItems = await getMenuItems()
         } catch (error) {
@@ -93,7 +100,8 @@ exports.getPostById = async (req, res) => {
             comments: comments,
             category: category ? category.name : 'Unknown',
             menuItems: menuItems,
-            isAdmin: isAdmin
+            isAdmin: isAdmin,
+            isOwner: isOwner
         })
     } catch (error) {
         console.error('Error getting post:', error)
