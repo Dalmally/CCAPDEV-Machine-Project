@@ -18,7 +18,7 @@ async function getMenuItems() {
         subcategories: menuItems[parent]
     }))
 }
-
+   
 //This will mainly add and get posts from the database
 
 //Adds a post into the database

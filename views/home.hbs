@@ -7,13 +7,16 @@
         {{#if posts.length}}
             {{#each posts}}
 <article class="post-card">
-    <a href="/post/{{post_id}}" class="post-link">
-        <h2>{{title}}</h2>
-    </a>
-
-    <div class="post-header-meta">
-        <img src="{{or this.authorAvatar '/default-avatar.jpg'}}" class="mini-avatar">
-        <span class="category-tag">{{category}}</span>
+    <div class="post-top">
+        <div class="post-left">
+            <img src="{{or this.authorAvatar '/default-avatar.jpg'}}" class="mini-avatar">
+            <span class="category-tag">{{category}}</span>
+        </div>
+        <div class="post-right">
+            <a href="/post/{{post_id}}" class="post-link">
+                <h2>{{title}}</h2>
+            </a>
+        </div>
     </div>
     
     <p class="post-preview">{{contentPreview}}</p>

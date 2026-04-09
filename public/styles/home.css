@@ -200,7 +200,6 @@ h2{
     height: 32px;
     border-radius: 50%;
     object-fit: cover;
-    margin-right: 10px;
     border: 1px solid #fff;
 }
 
@@ -231,4 +230,23 @@ h2{
     color: white;
     border-radius: 4px;
     text-transform: uppercase;
+}
+
+/* New post layout */
+.post-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 16px;
+}
+
+.post-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.post-right {
+    flex: 1;
 }
