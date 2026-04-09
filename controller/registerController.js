@@ -24,7 +24,8 @@ const registerController = {
             title: 'Register',
             pageCss: 'registration',
             formData: {},
-            menuItems: menuItems
+            menuItems: menuItems,
+            layout: false
         })
     },
 
@@ -42,7 +43,8 @@ const registerController = {
                     formData: { email, username },
                     menuItems: menuItems,
                     error: 'Passwords do not match!',
-                    showPopup: true
+                    showPopup: true,
+                    layout: false
                 })
             }
 
@@ -65,7 +67,8 @@ const registerController = {
                     formData: { email, username },
                     menuItems: menuItems,
                     error: errorMsg,
-                    showPopup: true
+                    showPopup: true,
+                    layout: false
                 })
             }
 
@@ -91,7 +94,8 @@ const registerController = {
                 formData: req.body,
                 menuItems: menuItems,
                 error: 'An unexpected database error occurred.',
-                showPopup: true
+                showPopup: true,
+                layout: false
             })
         }
     }
