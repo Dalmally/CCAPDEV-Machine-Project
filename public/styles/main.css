@@ -36,6 +36,11 @@ body {
     margin: 0;
 }
 
+.home-title-banner h1 a {
+    color: #0c6543;
+    text-decoration: none;
+}
+
 .hero-actions {
     margin-top: 15px;
     display: flex;
