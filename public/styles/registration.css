@@ -108,14 +108,12 @@ body {
 }
 .reg-input:focus {
   border-color: #00ff9d;
-  box-shadow: 0 0 0 2px rgba(0, 255, 157, 0.15);
 }
 .reg-input.input-error {
   border-color: #ff4444;
 }
 .reg-input.input-error:focus {
   border-color: #ff4444;
-  box-shadow: 0 0 0 2px rgba(255, 68, 68, 0.15);
 }
 .reg-error-text {
   color: #ff4444;

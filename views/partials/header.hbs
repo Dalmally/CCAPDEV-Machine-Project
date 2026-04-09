@@ -1,8 +1,7 @@
 <header class="header">
-    <a href="/" class="logo">FORUM</a>
+    <button class="nav-btn categories-btn" id="categoriesBtn">Categories</button>
 
     <nav class="nav-links">
-        <button class="nav-btn categories-btn" id="categoriesBtn">Categories</button>
         <a href="/about" class="nav-btn">About</a>
         {{#if user}}
             <a href="/profile/{{user.username}}" class="nav-btn">My Profile ({{user.username}})</a>

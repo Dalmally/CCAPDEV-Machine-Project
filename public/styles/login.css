@@ -88,7 +88,6 @@ body {
 .login-container input[type="email"]:focus,
 .login-container input[type="password"]:focus {
   border-color: #0c6543;
-  box-shadow: 0 0 0 2px rgba(4, 79, 51, 0.15);
 }
 
 /* ========== CHECKBOX ========== */
