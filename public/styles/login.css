@@ -43,6 +43,14 @@ body {
   overflow: hidden;
 }
 
+.login-container form::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: linear-gradient(to right, transparent, #00ff9d, transparent);
+  opacity: 0.5;
+}
+
 .login-container form {
   padding: 32px;
 }
