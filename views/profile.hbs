@@ -1,36 +1,38 @@
 <div class="container">
-    <div id="icon-section">
-        <div id="icon-div">
-            <img src="{{user.avatar_url}}" alt="User avatar" id="avatar">
+    <div class="profile-header">
+        <div id="icon-section">
+            <div id="icon-div">
+                <img src="{{user.avatar_url}}" alt="User avatar" id="avatar">
+            </div>
         </div>
-    </div>
 
-    <div id="details-section">
-        {{#if user}}
-        <div id="username">
-            <h2>{{user.username}}</h2>
-
-            {{#if isOwnProfile}}
-            <a href="/profile/edit" class="edit-btn">Edit Profile</a>
-        {{/if}}
+        <div id="details-section">
+            {{#if user}}
+            <div id="username">
+                <h2>{{user.username}}</h2>
+                {{#if isOwnProfile}}
+                <a href="/profile/edit" class="edit-btn">Edit Profile</a>
+                {{/if}}
+            </div>
+            <div id="bio">
+                <p>{{user.bio}}</p>
+            </div>
+            <div id="badge">
+                <p>{{user.badge}}</p>
+            </div>
+            {{else if admin}}
+            <div id="username">
+                <h2>Admin: {{admin.email}}</h2>
+            </div>
+            {{else}}
+            <p>User not found.</p>
+            {{/if}}
         </div>
-        <div id="bio">
-            <p>{{user.bio}}</p>
-        </div>
-        <div id="badge">
-            <p>{{user.badge}}</p>
-        </div>
-        {{else if admin}}
-        <div id="username">
-            <h2>Admin: {{admin.email}}</h2>
-        </div>
-        {{else}}
-        <p>User not found.</p>
-        {{/if}}
     </div>
 </div>
 
 <div class="posts-container">
+    <h2>Recent Posts</h2>
     <div id="posts">
         {{#if user.posts.length}}
         {{#each user.posts}}
@@ -45,5 +47,4 @@
         <p>No posts yet.</p>
         {{/if}}
     </div>
-
 </div>
